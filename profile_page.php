@@ -35,7 +35,7 @@ if ($user->isLoggedIn()) { ?>
   <p>Hello <a href=""><?php echo escape($user->data()->username); ?></a>!</p>
 
   <a href="logout.php">Log out</a>
-
+  <a href="update.php">Update info</a>
 <!-- SCRIPTS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
