@@ -45,7 +45,7 @@
 
      $app_id = '1387458658249573';
      $app_secret = '961d794e2d07a36458822e5ccc3a8c47';
-     $redirect_url='http://localhost/git/rent-a-student/fb_login.php';
+     $redirect_url='http://localhost/rent-a-student/fb_login.php';
      
 
      //3.Initialize application, create helper object and get fb sess
