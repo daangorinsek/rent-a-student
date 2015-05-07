@@ -68,7 +68,6 @@
 						<ul class="list-group">
 						<li class="list-group-item text-right"><span class="pull-left"><strong class="">Firstname</strong></span> <?php echo "$firstname"; ?> </li>
 						<li class="list-group-item text-right"><span class="pull-left"><strong class="">Lastname</strong></span><?php echo "$lastname"; ?></li>
-						<li class="list-group-item text-right"><span class="pull-left"><strong class="">Lastname</strong></span><?php echo "$location"; ?></li>
 
 							<li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender</strong></span> <?php echo "$gender"; ?></li>
 						</ul>

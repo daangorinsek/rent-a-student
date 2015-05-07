@@ -69,7 +69,6 @@
         $gender= $graph->getGender();
         $lastname= $graph->getLastname();
         $uid= $graph->getId();
-        $hometown = $graph->getHometown();
 
         $profile_pic =  "http://graph.facebook.com/".$uid."/picture?width=140&height=140";
 
