@@ -68,7 +68,13 @@ class User {
 		return false;
 		}
 	}
-
+/*
+	public function getAll() {
+		$conn = Db::getInstance();
+		$allUsers = $conn->query("SELECT * FROM users");
+		return $allUsers;
+	}
+*/
 	public function exists() {
 		return (!empty($this->_data)) ? true : false;
 	}
