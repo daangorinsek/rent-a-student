@@ -60,6 +60,7 @@
         $graph = $response->getGraphObject(GraphUser::className());
         // use graph object methods to get user details
         $name= $graph->getName();
+        print_r($graph);
         echo "hi $name";
     }else{
         //else echo login

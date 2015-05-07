@@ -36,6 +36,7 @@ if (Input::exists()) {
                     'password' => Hash::make(Input::get('password'), $salt),
                     'salt' => $salt,
                     'name' => Input::get('name'),
+                    'photo_url' => Input::get('photo'),
                     'joined' => date('Y-m-d H:i:s'),
                     'group' => 1
                 ));
@@ -85,7 +86,7 @@ if (Input::exists()) {
 
                     <div style="display:none" id="signup-alert" class="alert alert-danger col-sm-12"></div>
 
-                    <form id="signupform" class="form-horizontal" role="form" action="" method="post">
+                    <form id="signupform" class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                             <input id="signup-username" type="text" class="form-control" name="username" value="<?php echo Input::get('username'); ?>" placeholder="Your school email (r0xxxxxx@student.thomasmore.be)">                                     
@@ -101,6 +102,10 @@ if (Input::exists()) {
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input id="signup-name" type="text" class="form-control" name="name" value="<?php echo Input::get('name'); ?>" placeholder="Enter your name">
+                        </div>
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-upload"></i></span>
+                            <input id="photo" type="file" class="form-control" name="photo">
                         </div>
                         <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" />
                         <input type="submit" id="btn-signup" class="btn btn-success" value="Sign Up"/>

@@ -32,7 +32,8 @@ if ($user->isLoggedIn()) { ?>
 
 <body>
 
-  <p>Hello <a href=""><?php echo escape($user->data()->username); ?></a>!</p>
+  <p>Hello <a href=""><?php echo escape($user->data()->name); ?></a>!</p>
+  <img src="<?php echo $user->data()->photo_url; ?>" width="216" height="216"/>
 
   <a href="logout.php">Log out</a>
   <a href="update.php">Update info</a>
