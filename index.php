@@ -1,4 +1,8 @@
 <?php
+
+
+      include("fb_login.php");
+
 ?>
 <!DOCTYPE html> 
 <html lang="en">
@@ -70,7 +74,7 @@
       <div class="col-md-6">
         <h2>Bezoekers</h2>
         <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-primary" href="fb_login.php" role="button">Sign in/up with Facebook</a></p>
+        <?php echo '<a href='.$helper->getLoginUrl().' class="btn btn-primary">Login with facebook</a>'; ?>
       </div>
       <div class="col-md-6">
         <h2>IMDers</h2>

@@ -65,25 +65,23 @@
 
         // use graph object methods to get user details
         $name= $graph->getName();
-<<<<<<< HEAD
-        print_r($graph);
-        echo "hi $name";
-=======
         $firstname= $graph->getFirstname();
         $gender= $graph->getGender();
         $lastname= $graph->getLastname();
-        
+        $uid= $graph->getId();
+        $hometown = $graph->getHometown();
 
-
+        $profile_pic =  "http://graph.facebook.com/".$uid."/picture?width=140&height=140";
 
       include("visitor_profile.php");
 
 
 
->>>>>>> origin/master
     }else{
         //else echo login
-        echo '<a href='.$helper->getLoginUrl().'>Login with facebook</a>';
+        
+
+        
     }
 
 
