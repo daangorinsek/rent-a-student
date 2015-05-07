@@ -46,3 +46,6 @@ figcaption {
 	background: linear-gradient(to bottom, rgba(25,25,25,0.27) 0%,rgba(25,25,25,1) 100%);
 	overflow: hidden;
 }
+.input-group{
+	margin-bottom: 25px
+}
