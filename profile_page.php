@@ -32,11 +32,13 @@ if ($user->isLoggedIn()) { ?>
 
 <body>
 
-  <p>Hello <a href=""><?php echo escape($user->data()->name); ?></a>!</p>
-  <img src="<?php echo $user->data()->photo_url; ?>" width="216" height="216"/>
-
   <a href="logout.php">Log out</a>
   <a href="update.php">Update info</a>
+  
+  <p>Hello <a href=""><?php echo escape($user->data()->name); ?></a>!</p>
+  <img src="<?php echo $user->data()->photo_url; ?>" />
+
+  
 <!-- SCRIPTS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
