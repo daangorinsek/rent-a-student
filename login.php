@@ -1,6 +1,32 @@
 <?php
 
-    include_once("classes/Db.class.php");
+require_once 'core/init.php';
+
+if (Input::exists()) {
+    if (Token::check(Input::get('token'))) {
+        $validate = new Validate();
+        $validation = $validate -> check($_POST, array(
+            'username' => array('required' => TRUE),
+            'password' => array('required' => TRUE,)
+        ));
+
+        if ($validation -> passed()) {
+            $user = new User();
+            $remember = (Input::get('remember') === 'on') ? true : false;
+            $login = $user->login(Input::get('username'), Input::get('password'), $remember);
+
+            if($login) {
+                Redirect::to('profile_page.php');
+            } else {
+                echo 'Login failed';
+            }
+        } else {
+            foreach ($validation->errors() as $error) {
+                echo $error . '<br />';
+            }
+        }
+    }
+}
 
 ?><!DOCTYPE html>
 <html>
@@ -12,7 +38,6 @@
     <meta name="author" content=""/>
 
     <title>Untitled</title>
-    <link rel="shortcut icon" href=""/>
 
     <link rel="stylesheet" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -25,26 +50,12 @@
 </head>
 <body>
 
-    <?php if(isset($error)): ?>
-        <div class="alert alert-danger" role="alert">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <?php echo $error; ?>                    
-        </div>
-    <?php endif; ?>
-
-    <?php if(isset($succes)): ?>
-        <div class="alert alert-success" role="alert">
-            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            <?php echo $succes; ?>
-        </div>
-    <?php endif; ?>
-
-    <div class="container">    
+       <div class="container">    
         <div id="box" style="margin-top:70px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
             <div class="panel panel-info" >
 
                 <div class="panel-heading">
-                    <div class="panel-title">Sign In</div>
+                    <div class="panel-title">Log In</div>
                 </div>     
 
                 <div style="padding-top:30px" class="panel-body" >
@@ -54,13 +65,21 @@
                     <form id="signinform" class="form-horizontal" role="form" action="" method="post">
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input id="signin-email" type="text" class="form-control" name="email" value="" placeholder="school email">                                        
+                            <input id="signin-username" type="text" class="form-control" name="username" value="" placeholder="school email">                                        
                         </div>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                             <input id="signin-password" type="password" class="form-control" name="password" placeholder="password">
                         </div>
-                        <button type="submit" id="btn-signin" class="btn btn-success">Sign In</button>
+                        <div class="input-group">
+                            <div class="checkbox">
+                                <label for="remember">
+                                    <input id="remember" type="checkbox" name="remember"> Remember me
+                                </label>
+                            </div>
+                        </div>
+                        <input type="hidden" name="token" value="<?php echo Token::generate(); ?>"/>
+                        <input type="submit" id="btn-signin" class="btn btn-success pull-left loginform" value="Log In"/>
                     </form>     
 
                 </div>                     

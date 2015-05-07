@@ -15,6 +15,10 @@ body {
 	margin: 0 auto;
 }
 
+.loginform {
+	margin-top: 10px;
+}
+
 figure {
 	width: 25%;
 	float: left;

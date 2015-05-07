@@ -10,7 +10,6 @@
   <meta name="author" content=""/>
   
   <title>Rent-a-Student</title>
-  <link rel="shortcut icon" href=""/>
 
   <link rel="stylesheet" type="text/css" href="css/reset.css" />
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -48,7 +47,6 @@
   <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <a class="navbar-brand" href="#">Rent a Student</a>
-        <a href="signin.php" class="btn btn-success navbar-btn pull-right">Sign In</a>
     </div>
   </nav>
 
@@ -72,12 +70,13 @@
       <div class="col-md-6">
         <h2>Bezoekers</h2>
         <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-primary" href="fb_login.php" role="button">Sign Up</a></p>
+        <p><a class="btn btn-primary" href="fb_login.php" role="button">Sign in/up with Facebook</a></p>
       </div>
       <div class="col-md-6">
         <h2>IMDers</h2>
         <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-primary" href="signup_students.php" role="button">Sign Up</a></p>
+        <p><a class="btn btn-primary" href="register.php" role="button">Sign Up</a>
+        <a href="login.php" class="btn btn-success navbar-btn">Log In</a></p>
       </div>
     </div>
     <hr>
