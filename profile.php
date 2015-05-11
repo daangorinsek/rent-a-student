@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 <?php 
-include_once("classes/Student.class.php");
-=======
-<?php
->>>>>>> 7d7028d2e21cb0497f1608dcd55cc753ca573e7e
+
+
 
 
 ?><!DOCTYPE html>

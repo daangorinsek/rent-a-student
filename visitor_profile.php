@@ -46,13 +46,11 @@
 
 
 		<form action="" method="post" role="form">
-<<<<<<< HEAD
 			
 			<div class="row">
 			<div class="col-md-offset-3 col-md-6">
 			
 					
-=======
 			<div class="row">
 			<div class="col-md-3">
 
@@ -70,22 +68,16 @@
 			<div class="col-md-3">
 				<div class="form-group">
 		
->>>>>>> 6497cf28e4a4c5198e57fa7af2d80f1776753111
 					<div class="panel panel-default">
 					
 						<div class="panel-heading"><strong class=""> Welkom <?php echo $name; ?> </strong></div>
 						<ul class="list-group">
-<<<<<<< HEAD
 						<li class="list-group-item"><?php echo "<img class='img-circle' src=\"" . $profile_pic . "\" />"; ?></li>
 						<li class="list-group-item text-right"><span class="pull-left"><strong class="">Firstname</strong></span> <?php echo $firstname; ?> </li>
 						<li class="list-group-item text-right"><span class="pull-left"><strong class="">Lastname</strong></span><?php echo $lastname; ?></li>
 						<li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender</strong></span> <?php echo $gender; ?></li>
-=======
-						<li class="list-group-item text-right"><span class="pull-left"><strong class="">Firstname</strong></span> <?php echo "$firstname"; ?> </li>
-						<li class="list-group-item text-right"><span class="pull-left"><strong class="">Lastname</strong></span><?php echo "$lastname"; ?></li>
 
-							<li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender</strong></span> <?php echo "$gender"; ?></li>
->>>>>>> 6497cf28e4a4c5198e57fa7af2d80f1776753111
+						
 						</ul>
 					
 					
