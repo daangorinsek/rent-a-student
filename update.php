@@ -16,7 +16,6 @@ if(!$user->isLoggedIn()) {
     <meta name="keywords" content=""/>
     <meta name="author" content=""/>
 
-<<<<<<< HEAD
 <form action="" method="post">
 	<input name="name" type="text" value="<?php echo escape($user->data()->name); ?>">
 	<input type="submit" value="Update">
@@ -27,7 +26,7 @@ if(!$user->isLoggedIn()) {
 
   <a href="logout.php">Log out</a>
   <a href="update.php">Update info</a>
-=======
+
     <title>Untitled</title>
 
     <link rel="stylesheet" type="text/css" href="css/reset.css" />
@@ -40,7 +39,6 @@ if(!$user->isLoggedIn()) {
 
 </head>
 <body>
-
 	<nav class="navbar navbar-default navbar-static-top">
 		 <div class="container-fluid">
 		 	<a class="navbar-brand" href="#">Rent a Student</a>
@@ -50,7 +48,6 @@ if(!$user->isLoggedIn()) {
           </ul>
 		</div>
 	</nav>
->>>>>>> 6497cf28e4a4c5198e57fa7af2d80f1776753111
   
   <div class="container">    
         <div id="box" style="margin-top:70px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
@@ -84,9 +81,8 @@ if(!$user->isLoggedIn()) {
 
                 </div>                     
             </div>  
-<<<<<<< HEAD
         </div>
-=======
+
         </div>
 
     <!-- SCRIPTS -->
@@ -96,4 +92,3 @@ if(!$user->isLoggedIn()) {
 
 </body>
 </html>
->>>>>>> 6497cf28e4a4c5198e57fa7af2d80f1776753111

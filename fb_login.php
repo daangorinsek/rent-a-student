@@ -77,11 +77,11 @@
 
 
     }else{
-<<<<<<< HEAD
 
-=======
+
+
         //else echo login
->>>>>>> 6497cf28e4a4c5198e57fa7af2d80f1776753111
+
         
 
         
