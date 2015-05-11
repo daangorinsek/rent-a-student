@@ -47,25 +47,10 @@
 
 		<form action="" method="post" role="form">
 			
+			
+			
 			<div class="row">
 			<div class="col-md-offset-3 col-md-6">
-			
-					
-			<div class="row">
-			<div class="col-md-3">
-
-				<div class="input-group">
-					<a href="#">
-					<?php echo "<img src=\"" . $profile_pic . "\" />"; ?>
-					</a>
-				</div>
-
-				
-
-			</div>
-			</div>
-			<div class="row">
-			<div class="col-md-3">
 				<div class="form-group">
 		
 					<div class="panel panel-default">
