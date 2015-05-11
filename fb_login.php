@@ -68,17 +68,19 @@
         $firstname= $graph->getFirstname();
         $gender= $graph->getGender();
         $lastname= $graph->getLastname();
-        
+        $uid= $graph->getId();
 
-
+        $profile_pic =  "http://graph.facebook.com/".$uid."/picture?width=140&height=140";
 
       include("visitor_profile.php");
 
 
 
     }else{
-        //else echo login
-        echo '<a href='.$helper->getLoginUrl().'>Login with facebook</a>';
+
+        
+
+        
     }
 
 

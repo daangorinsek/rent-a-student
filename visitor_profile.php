@@ -1,5 +1,6 @@
 <?php 
 
+      require_once('fb_login.php');
 
 
 
@@ -45,34 +46,28 @@
 
 
 		<form action="" method="post" role="form">
+			
+			<div class="row">
 			<div class="col-md-offset-3 col-md-6">
-
-				<div class="input-group pull-left">
-					<a href="#">
-						<img src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg" class="img-responsive img-circle" alt="profilepicture" >
-					</a>
-				</div>
-
-				
-
-			</div>
-			<div class="col-md-offset-3 col-md-6">
-				<div class="form-group">
-		
+			
+					
 					<div class="panel panel-default">
 					
-						<div class="panel-heading"><strong class=""><?php echo "$name"; ?></strong></div>
+						<div class="panel-heading"><strong class=""> Welkom <?php echo $name; ?> </strong></div>
 						<ul class="list-group">
-						<li class="list-group-item text-right"><span class="pull-left"><strong class="">Firstname</strong></span> <?php echo "$firstname"; ?> </li>
-							<li class="list-group-item text-right"><span class="pull-left"><strong class="">Lastname</strong></span><?php echo "$lastname"; ?></li>
-							<li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender</strong></span> <?php echo "$gender"; ?></li>
+						<li class="list-group-item"><?php echo "<img class='img-circle' src=\"" . $profile_pic . "\" />"; ?></li>
+						<li class="list-group-item text-right"><span class="pull-left"><strong class="">Firstname</strong></span> <?php echo $firstname; ?> </li>
+						<li class="list-group-item text-right"><span class="pull-left"><strong class="">Lastname</strong></span><?php echo $lastname; ?></li>
+						<li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender</strong></span> <?php echo $gender; ?></li>
 						</ul>
-					</div>
+					
 					
 
 				</div>
 
+							<p><a class='btn btn-primary' href='student_page.php' role='button'>Boek een rondleiding</a>
 
+			</div>
 			</div>
 
 

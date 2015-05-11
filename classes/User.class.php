@@ -86,6 +86,7 @@ class User {
 	public function isLoggedIn() {
 		return $this->_isLoggedIn;
 	}
+	
 }
 
 ?>
