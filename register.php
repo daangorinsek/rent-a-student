@@ -10,21 +10,27 @@ if (Input::exists()) {
                 'min' => 30,
                 'max' => 30,
                 'unique' => 'users'
-                ),
+            ),
             'password' => array(
                 'required' => TRUE,
                 'min' => 6
-                ),
+            ),
             'password_again' => array(
                 'required' => TRUE,
                 'matches' => 'password'
-                ),
+            ),
             'name' => array(
                 'required' => TRUE,
                 'min' => 2,
                 'max' => 50
-                )
-            ));
+            ),
+            'branch' => array(
+                'required' => TRUE
+            ),
+            'grade' => array(
+                'required' => TRUE
+            )
+        ));
 
         if ($validation -> passed()) {
             $user = new User();
@@ -38,10 +44,12 @@ if (Input::exists()) {
                     'name' => Input::get('name'),
                     'photo_url' => Input::get('photo'),
                     'joined' => date('Y-m-d H:i:s'),
+                    'branch' => Input::get('branch'),
+                    'grade' => Input::get('grade'),
                     'group' => 1
                 ));
-                Session::flash('home', 'Sign up Successful, you can now log in!');
-                Redirect::to('index.php');
+                //Session::flash('home', 'Sign up Successful, you can now log in!');
+                Redirect::to('login.php');
             } catch(Exception $e) {
                 $err = $e->getMessage();
             }
@@ -61,7 +69,7 @@ if (Input::exists()) {
     <meta name="keywords" content=""/>
     <meta name="author" content=""/>
 
-    <title>Untitled</title>
+    <title>Register</title>
 
     <link rel="stylesheet" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -89,7 +97,7 @@ if (Input::exists()) {
                     <form id="signupform" class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input id="signup-username" type="text" class="form-control" name="username" value="<?php echo Input::get('username'); ?>" placeholder="Your school email (r0xxxxxx@student.thomasmore.be)">                                     
+                            <input id="signup-username" type="text" class="form-control" name="username" value="" placeholder="Your school email (r0xxxxxx@student.thomasmore.be)">                                     
                         </div>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
@@ -101,7 +109,24 @@ if (Input::exists()) {
                         </div>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="signup-name" type="text" class="form-control" name="name" value="<?php echo Input::get('name'); ?>" placeholder="Enter your name">
+                            <input id="signup-name" type="text" class="form-control" name="name" value="" placeholder="Enter your name">
+                        </div>
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                            <select name="branch" class="form-control">
+                                <option value="">- Selecteer jou richting -</option>
+                                <option value="Design">Design</option>
+                                <option value="Developement">Development</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
+                            <select name="grade" class="form-control">
+                                <option value="">- Selecteer jou graad -</option>
+                                <option value="1ste jaar">1ste jaar</option>
+                                <option value="2de jaar">2de jaar</option>
+                                <option value="3de jaar">3de jaar</option>
+                            </select>
                         </div>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-upload"></i></span>

@@ -51,9 +51,8 @@ figcaption {
 }
 
 .jumbotron_booking {
-background-image: url("../images/background.jpg");
-
-padding: 30px 15px;
+	background-image: url("../images/background.jpg");
+	padding: 30px 15px;
   margin-bottom: 30px;
   color: inherit;
   background-size: cover;
@@ -81,17 +80,14 @@ padding: 30px 15px;
 .jumbotron_booking .container {
   max-width: 100%;
 }
-@media screen and (min-width: 768px) {
-  .jumbotron_booking {
-    padding: 48px 0;
-  }
-  .container .jumbotron_booking,
-  .container-fluid .jumbotron_booking {
-    padding-right: 60px;
-    padding-left: 60px;
-  }
-  .jumbotron_booking h1,
-  .jumbotron_booking .h1 {
-    font-size: 63px;
-  }
+
+#profile-pic {
+	margin-bottom: 35px;
+	width: 120px;
+	height: 120px;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+#aboutme {
+	margin-bottom: 20px;
 }

@@ -22,6 +22,15 @@ class User {
 		}
 	}
 
+	public function update($fields = array(), $id = null) {
+		if (!$id && $this->isLoggedIn()) {
+			$id = $this->data()->id;
+		}
+		if (!$this->_db->update('users', $id, $fields)) {
+			throw new Exception('There was a problem updating your information');
+		}
+	}
+
 	public function create($fields = array()) {
 		if(!$this->_db->insert('users', $fields)) {
 			throw new Exception('There was a problem creating an account');
@@ -68,13 +77,7 @@ class User {
 		return false;
 		}
 	}
-/*
-	public function getAll() {
-		$conn = Db::getInstance();
-		$allUsers = $conn->query("SELECT * FROM users");
-		return $allUsers;
-	}
-*/
+
 	public function exists() {
 		return (!empty($this->_data)) ? true : false;
 	}
