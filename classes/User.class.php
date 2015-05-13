@@ -36,6 +36,8 @@ class User {
 			throw new Exception('There was a problem creating an account');
 		}
 	}
+	
+	
 
 	public function find($user = null) {
 		if($user) {
@@ -95,7 +97,12 @@ class User {
 	public function isLoggedIn() {
 		return $this->_isLoggedIn;
 	}
+
+
+	
+		
+		
+	
 	
 }
-
 ?>

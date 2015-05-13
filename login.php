@@ -16,7 +16,11 @@ if (Input::exists()) {
             $login = $user->login(Input::get('username'), Input::get('password'), $remember);
 
             if($login) {
+<<<<<<< HEAD
                 Redirect::to('profile.php');
+=======
+                Redirect::to('edit_profile.php');
+>>>>>>> origin/master
             } else {
                 echo 'Login failed';
             }

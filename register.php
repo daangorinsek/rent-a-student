@@ -69,7 +69,11 @@ if (Input::exists()) {
     <meta name="keywords" content=""/>
     <meta name="author" content=""/>
 
+<<<<<<< HEAD
     <title>Register</title>
+=======
+    <title>Sign up</title>
+>>>>>>> origin/master
 
     <link rel="stylesheet" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -109,6 +113,7 @@ if (Input::exists()) {
                         </div>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+<<<<<<< HEAD
                             <input id="signup-name" type="text" class="form-control" name="name" value="" placeholder="Enter your name">
                         </div>
                         <div style="margin-bottom: 25px" class="input-group">
@@ -127,6 +132,9 @@ if (Input::exists()) {
                                 <option value="2de jaar">2de jaar</option>
                                 <option value="3de jaar">3de jaar</option>
                             </select>
+=======
+                            <input id="signup-name" type="text" class="form-control" name="name" value="<?php echo Input::get('name'); ?>" placeholder="Enter your full name">
+>>>>>>> origin/master
                         </div>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-upload"></i></span>
