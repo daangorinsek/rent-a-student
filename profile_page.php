@@ -33,7 +33,7 @@ if ($user->isLoggedIn()) { ?>
 <body>
 
   <a href="logout.php">Log out</a>
-  <a href="update.php">Update info</a>
+  <a href="edit_profile.php">Update info</a>
   
   <p>Hello <a href=""><?php echo escape($user->data()->name); ?></a>!</p>
   <img src="<?php echo $user->data()->photo_url; ?>" />

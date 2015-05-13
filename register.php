@@ -61,7 +61,7 @@ if (Input::exists()) {
     <meta name="keywords" content=""/>
     <meta name="author" content=""/>
 
-    <title>Untitled</title>
+    <title>Sign up</title>
 
     <link rel="stylesheet" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -101,7 +101,7 @@ if (Input::exists()) {
                         </div>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="signup-name" type="text" class="form-control" name="name" value="<?php echo Input::get('name'); ?>" placeholder="Enter your name">
+                            <input id="signup-name" type="text" class="form-control" name="name" value="<?php echo Input::get('name'); ?>" placeholder="Enter your full name">
                         </div>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-upload"></i></span>
