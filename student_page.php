@@ -8,8 +8,6 @@ if(!$user->isLoggedIn()) {
 	Redirect::to('login.php');
 }
 
-$user = Db::getInstance()->query("SELECT * FROM users");
-
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,41 +52,46 @@ $user = Db::getInstance()->query("SELECT * FROM users");
 
 	<form class="navbar-form">
 		<div class="form-group" action="" method="get">
-			<select name="date" class="form-control">
-				<option value="">-- Kies datum --</option>     
+			<select name="date" class="form-control" id="date">
+				<option value="">Alle studenten</option>     
 				<option value="2015-05-15">15-05-2015</option>     
 				<option value="2015-05-20">20-05-2015</option>      
 				<option value="2015-05-27">27-05-2015</option>        
 				<option value="2015-06-26">26-06-2015</option>
 			</select>
 		</div>
-		<input type="submit" id="btn-signup" class="btn btn-success" value="Search"/>
+		<input type="submit" class="btn btn-success" value="Search"/>
 	</form>
 
 	<div class="container">
-		<?php if(!$user->count()) {
-			echo 'nothing';
+		<?php
+		if(!empty($_GET['date'])) {
+			$list = Input::get('date');
+			$user = Db::getInstance()->query("SELECT * FROM users WHERE date LIKE '$list'");
 		} else {
-			foreach ($user->results() as $user) {
-				$user->name;
-				$user->photo_url;
-
-				echo
-				"<div class='col-lg-3 col-md-4 col-xs-6 text-center'>
-				<a class='thumbnail' href='#''>
-				<h4 >" .$user->name. "</h4>
-				<img class='img-responsive' src=" .$user->photo_url." alt='profilepicture'>
-				</a>
-				<a class='btn btn-primary' href='#' role='button'>Boek een rondleiding</a>
-				</div>";
-
-			}
-		} 
+			$user = Db::getInstance()->query("SELECT * FROM users");
+		}
 		?>
+
+		<?php foreach ($user->results() as $user) { ?>
+		<form action="" method="get">
+			<div class='col-lg-3 col-md-4 col-xs-6 text-center'>
+				<a class='thumbnail' href='#'>
+					<h4 ><?php echo $user->name; ?></h4>
+					<img class='img-responsive' src="<?php echo $user->photo_url; ?>">
+					<button type="submit" class='btn btn-primary' value="<?php echo $user->id; ?>"/>Boek een rondleiding</button>
+				</a>
+				
+			</div>
+		</form>
+		<?php } ?>
 
 	</div>
 
+
+
     <!-- SCRIPTS -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
