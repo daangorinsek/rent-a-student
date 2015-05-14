@@ -16,11 +16,7 @@ if (Input::exists()) {
             $login = $user->login(Input::get('username'), Input::get('password'), $remember);
 
             if($login) {
-<<<<<<< HEAD
                 Redirect::to('profile.php');
-=======
-                Redirect::to('edit_profile.php');
->>>>>>> origin/master
             } else {
                 echo 'Login failed';
             }
@@ -67,6 +63,7 @@ if (Input::exists()) {
                     <div style="display:none" id="signin-alert" class="alert alert-danger col-sm-12"></div>
 
                     <form id="signinform" class="form-horizontal" role="form" action="" method="post">
+                        <p>Nog niet geregistreerd? <a href="register.php">Sign Up</a></p>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                             <input id="signin-username" type="text" class="form-control" name="username" value="" placeholder="school email">                                        
@@ -78,7 +75,7 @@ if (Input::exists()) {
                         <div class="input-group">
                             <div class="checkbox">
                                 <label for="remember">
-                                    <input id="remember" type="checkbox" name="remember"> Remember me
+                                    <input id="remember" type="checkbox" name="remember"> Blijf ingelogd
                                 </label>
                             </div>
                         </div>

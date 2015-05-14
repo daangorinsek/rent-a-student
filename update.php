@@ -26,6 +26,8 @@ if (Input::exists()) {
             ),
             'grade' => array(
                 'required' => TRUE,
+            ),
+            'date' => array(
             )
         ));
 
@@ -36,7 +38,8 @@ if (Input::exists()) {
                     'name' => Input::get('name'),
                     'description' => Input::get('description'), 
                     'branch' => Input::get('branch'),
-                    'grade' => Input::get('grade')
+                    'grade' => Input::get('grade'),
+                    'date' => Input::get('date')
                 ));
                 Redirect::to('profile.php');
             } catch(Exception $e) {
@@ -76,7 +79,11 @@ if (Input::exists()) {
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <a class="navbar-brand" href="index.php">Rent a Student</a>
-            <a class="btn btn-danger pull-right" style="margin-top:8px;" href="logout.php">Logout</a>
+            <ul class="nav nav-pills pull-right" style="margin-top: 5px;">
+                <li><a href="student_page.php">Find a student</a></li>
+                <li><a href="profile.php">Profile</a></li>
+                <li><a class="btn btn-danger pull-right" href="logout.php">Logout</a></li>
+            </ul>   
         </div>
     </nav>
 
@@ -94,12 +101,12 @@ if (Input::exists()) {
 
                     <form id="" class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
                         
-                        <img id="profile-pic" src="<?php echo $user->data()->photo_url; ?>" />
+                        <img id="profile-pic" src="<?php echo $user->data()->photo_url; ?>"/>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-upload"></i></span>
                             <input id="photo" type="file" class="form-control" name="photo">
                         </div>
-                        <textarea id="aboutme" class="form-control" name="description" rows="5"></textarea>
+                        <textarea id="description" class="form-control" name="description" rows="5"><?php echo escape($user->data()->description); ?></textarea>
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                             <input id="username" type="text" class="form-control" name="username" value="<?php echo escape($user->data()->username); ?>" disabled>                                     
@@ -137,7 +144,31 @@ if (Input::exists()) {
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                            <input class="form-control" name="joined" type="text"  value="<?php echo escape($user->data()->joined); ?>" disabled>
+                            <select name="date" class="form-control">
+                                <option value="<?php echo escape($user->data()->date); ?>"><?php echo escape($user->data()->date); ?></option>
+                                <?php if($user->data()->date === "") { ?>      
+                                    <option value="2015-05-15">15-05-2015</option>     
+                                    <option value="2015-05-20">20-05-2015</option>      
+                                    <option value="2015-05-27">27-05-2015</option>        
+                                    <option value="2015-06-26">26-06-2015</option>
+                                <?php } else if($user->data()->date === "2015-05-15") { ?>
+                                    <option value="2015-05-20">20-05-2015</option>      
+                                    <option value="2015-05-27">27-05-2015</option>        
+                                    <option value="2015-06-26">26-06-2015</option>
+                                <?php } else if($user->data()->date === "2015-05-20") { ?>
+                                    <option value="2015-05-15">20-05-2015</option>      
+                                    <option value="2015-05-27">27-05-2015</option>        
+                                    <option value="2015-06-26">26-06-2015</option>
+                                <?php } else if($user->data()->date === "2015-05-27") { ?>
+                                    <option value="2015-05-15">20-05-2015</option>      
+                                    <option value="2015-05-20">27-05-2015</option>        
+                                    <option value="2015-06-26">26-06-2015</option>
+                                <?php } else if($user->data()->date === "2015-06-26") { ?>
+                                    <option value="2015-05-15">20-05-2015</option>      
+                                    <option value="2015-05-20">27-05-2015</option>        
+                                    <option value="2015-05-27">26-06-2015</option>
+                                <?php } ?>
+                            </select>
                         </div>
                         <input type="hidden" name="token" value="<?php echo Token::generate(); ?>"/>
                         <input type="submit" id="btn-signup" class="btn btn-success" value="Update"/>

@@ -73,7 +73,11 @@ if (Input::exists()) {
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <a class="navbar-brand" href="index.php">Rent a Student</a>
-            <a class="btn btn-primary pull-right" style="margin-top:8px;" href="profile.php">Back</a>
+            <ul class="nav nav-pills pull-right" style="margin-top: 5px;">
+                <li><a href="student_page.php">Find a student</a></li>
+                <li><a href="profile.php">Profile</a></li>
+                <li><a class="btn btn-danger pull-right" href="logout.php">Logout</a></li>
+            </ul>   
         </div>
     </nav>
 

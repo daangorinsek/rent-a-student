@@ -1,7 +1,7 @@
 <?php
 
 class User {
-	private $_db, $_data, $_sessionName, $_CookieName, $_isLoggedIn;
+	private $_db, $_data, $_sessionName, $_cookieName, $_isLoggedIn;
 
 	public function __construct($user = null) {
 		$this->_db = Db::getInstance();
@@ -76,8 +76,9 @@ class User {
 					return true;
 				}
 			}
-		return false;
+		
 		}
+		return false;
 	}
 
 	public function exists() {
@@ -98,11 +99,5 @@ class User {
 		return $this->_isLoggedIn;
 	}
 
-
-	
-		
-		
-	
-	
 }
 ?>

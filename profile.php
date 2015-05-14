@@ -34,7 +34,11 @@ if ($user->isLoggedIn()) { ?>
 	<nav class="navbar navbar-default navbar-static-top">
 		<div class="container">
 			<a class="navbar-brand" href="index.php">Rent a Student</a>
-			<a class="btn btn-danger pull-right" style="margin-top:8px;" href="logout.php">Logout</a>
+			<ul class="nav nav-pills pull-right" style="margin-top: 5px;">
+	            <li><a href="student_page.php">Find a student</a></li>
+	            <li><a href="profile.php">Profile</a></li>
+	            <li><a class="btn btn-danger pull-right" href="logout.php">Logout</a></li>
+          	</ul>	
 		</div>
 	</nav>
 
@@ -45,11 +49,10 @@ if ($user->isLoggedIn()) { ?>
 
 			<img id="profile-pic" class="pull-left" src="<?php echo $user->data()->photo_url; ?>" />
 
-			<textarea id="aboutme" class="form-control" name="about" rows="5" disabled></textarea>
-
+			<textarea id="aboutme" class="form-control" name="about" rows="5" disabled><?php echo escape($user->data()->description); ?></textarea>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-				<input class="form-control" type="text" name="name" value="<?php echo escape($user->data()->name); ?>" disabled>
+				<input class="form-control" id="name" type="text" name="name" value="<?php echo escape($user->data()->name); ?>" disabled>
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
@@ -65,7 +68,7 @@ if ($user->isLoggedIn()) { ?>
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-				<input class="form-control" name="joined" type="text"  value="<?php echo escape($user->data()->joined); ?>" disabled>
+				<input class="form-control" name="date" type="text"  value="<?php echo escape($user->data()->date); ?>" disabled>
 			</div>
 			<a class="btn btn-success" href="update.php">Edit information</a>
 			<a class="btn btn-primary" href="change_password.php">Change password</a>
