@@ -52,6 +52,19 @@ $user = Db::getInstance()->query("SELECT * FROM users");
 		</div>
 	</div>
 
+	<form class="navbar-form">
+		<div class="form-group" action="" method="get">
+			<select name="date" class="form-control">
+				<option value="">-- Kies datum --</option>     
+				<option value="2015-05-15">15-05-2015</option>     
+				<option value="2015-05-20">20-05-2015</option>      
+				<option value="2015-05-27">27-05-2015</option>        
+				<option value="2015-06-26">26-06-2015</option>
+			</select>
+		</div>
+		<input type="submit" id="btn-signup" class="btn btn-success" value="Search"/>
+	</form>
+
 	<div class="container">
 		<?php if(!$user->count()) {
 			echo 'nothing';
@@ -62,11 +75,11 @@ $user = Db::getInstance()->query("SELECT * FROM users");
 
 				echo
 				"<div class='col-lg-3 col-md-4 col-xs-6 text-center'>
-					<a class='thumbnail' href='#''>
-						<h4 >" .$user->name. "</h4>
-						<img class='img-responsive' src=" .$user->photo_url." alt='profilepicture'>
-					</a>
-					<a class='btn btn-primary' href='#' role='button'>Boek een rondleiding</a>
+				<a class='thumbnail' href='#''>
+				<h4 >" .$user->name. "</h4>
+				<img class='img-responsive' src=" .$user->photo_url." alt='profilepicture'>
+				</a>
+				<a class='btn btn-primary' href='#' role='button'>Boek een rondleiding</a>
 				</div>";
 
 			}
