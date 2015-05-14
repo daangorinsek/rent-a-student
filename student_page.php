@@ -50,20 +50,21 @@ if(!$user->isLoggedIn()) {
 		</div>
 	</div>
 
-	<form class="navbar-form">
-		<div class="form-group" action="" method="get">
-			<select name="date" class="form-control" id="date">
-				<option value="">Alle studenten</option>     
-				<option value="2015-05-15">15-05-2015</option>     
-				<option value="2015-05-20">20-05-2015</option>      
-				<option value="2015-05-27">27-05-2015</option>        
-				<option value="2015-06-26">26-06-2015</option>
-			</select>
-		</div>
-		<input type="submit" class="btn btn-success" value="Search"/>
-	</form>
-
 	<div class="container">
+
+		<form class="navbar-form">
+			<div class="form-group" action="" method="get">
+				<select name="date" class="form-control" id="date">
+					<option value="">Alle studenten</option>     
+					<option value="2015-05-15">15-05-2015</option>     
+					<option value="2015-05-20">20-05-2015</option>      
+					<option value="2015-05-27">27-05-2015</option>        
+					<option value="2015-06-26">26-06-2015</option>
+				</select>
+			</div>
+			<input type="submit" class="btn btn-success" value="Search"/>
+		</form>
+
 		<?php
 		if(!empty($_GET['date'])) {
 			$list = Input::get('date');
@@ -74,16 +75,16 @@ if(!$user->isLoggedIn()) {
 		?>
 
 		<?php foreach ($user->results() as $user) { ?>
-		<form action="" method="get">
-			<div class='col-lg-3 col-md-4 col-xs-6 text-center'>
-				<a class='thumbnail' href='#'>
-					<h4 ><?php echo $user->name; ?></h4>
-					<img class='img-responsive' src="<?php echo $user->photo_url; ?>">
-					<button type="submit" class='btn btn-primary' value="<?php echo $user->id; ?>"/>Boek een rondleiding</button>
-				</a>
-				
+			<div class='col-lg-3 col-md-4 col-xs-6 text-center thumbnail'>
+				<h4 ><?php echo $user->name; ?></h4>
+				<img class='img-responsive' src="<?php echo $user->photo_url; ?>" style="margin-bottom: 10px;">
+				<form action="booking.php" method="get">
+					<p><button type="submit" class='btn btn-primary' value="<?php echo $user->id; ?>"/>Boek een rondleiding</button></p>
+				</form>
+				<form action="profile_general.php" method="get">
+					<p><button type="submit" class='btn btn-success' name="profile_id" value="<?php echo $user->id; ?>"/>Meer informatie</button></p>
+				</form>
 			</div>
-		</form>
 		<?php } ?>
 
 	</div>

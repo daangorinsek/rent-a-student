@@ -6,10 +6,18 @@ if(Session::exists('home')) {
   echo '<p>' . Session::flash('home') . '</p>';
 }
 
-$user = new User();
-if ($user->isLoggedIn()) { ?>
+if(!$user->isLoggedIn()) {
+	Redirect::to('login.php');
+}
 
-<!DOCTYPE html>
+
+if (isset($_GET['profile_id'])) {
+	$id = $_GET['profile_id'];
+	$user = Db::getInstance()->get('users', array('id', '=', $id));
+	foreach ($user->results() as $user) {
+	}
+}
+?><!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8"/>
@@ -37,7 +45,7 @@ if ($user->isLoggedIn()) { ?>
 			<ul class="nav nav-pills pull-right" style="margin-top: 5px;">
 	            <li><a href="student_page.php">Find a student</a></li>
 	            <li><a href="profile.php">Profile</a></li>
-	            <li><a class="btn btn-danger pull-right" href="logout.php">Logout</a></li>
+	            <li><a class="btn btn-danger pull-right" href="student_page.php">Back</a></li>
           	</ul>	
 		</div>
 	</nav>
@@ -47,31 +55,29 @@ if ($user->isLoggedIn()) { ?>
 
 		<form action="" method="post" role="form" >
 
-			<img id="profile-pic" class="pull-left" src="<?php echo $user->data()->photo_url; ?>" />
+			<img id="profile-pic" class="pull-left" src="<?php echo $user->photo_url; ?>" />
 
-			<textarea id="aboutme" class="form-control" name="about" rows="5" disabled><?php echo escape($user->data()->description); ?></textarea>
+			<textarea id="aboutme" class="form-control" name="about" rows="5" disabled><?php echo $user->description; ?></textarea>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-				<input class="form-control" id="name" type="text" name="name" value="<?php echo escape($user->data()->name); ?>" disabled>
+				<input class="form-control" id="name" type="text" name="name" value="<?php echo $user->name; ?>" disabled>
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-				<input type="text" class="form-control" name="email" value="<?php echo escape($user->data()->username); ?>" disabled>                                        
+				<input type="text" class="form-control" name="email" value="<?php echo $user->username; ?>" disabled>                                        
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-				<input class="form-control" name="branch" type="text"  value="<?php echo escape($user->data()->branch); ?>" disabled>
+				<input class="form-control" name="branch" type="text"  value="<?php echo $user->branch; ?>" disabled>
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
-				<input class="form-control" name="grade" type="text"  value="<?php echo escape($user->data()->grade); ?>" disabled>
+				<input class="form-control" name="grade" type="text"  value="<?php echo $user->grade; ?>" disabled>
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-				<input class="form-control" name="date" type="text"  value="<?php echo escape($user->data()->date); ?>" disabled>
+				<input class="form-control" name="date" type="text"  value="<?php echo $user->date; ?>" disabled>
 			</div>
-			<a class="btn btn-success" href="update.php">Edit information</a>
-			<a class="btn btn-primary" href="change_password.php">Change password</a>
 
 		</form>
 
@@ -87,8 +93,3 @@ if ($user->isLoggedIn()) { ?>
 
 </body>
 </html>
-
-<?php
-} else {
-	echo '<p>You need to <a href="login.php">log in</a> first</p>';
-}
