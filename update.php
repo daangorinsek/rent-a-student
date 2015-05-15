@@ -81,7 +81,7 @@ if (Input::exists()) {
             <a class="navbar-brand" href="index.php">Rent a Student</a>
             <ul class="nav nav-pills pull-right" style="margin-top: 5px;">
                 <li><a href="student_page.php">Find a student</a></li>
-                <li><a href="profile.php">Profile</a></li>
+                <li><a href="student_profile.php">Profile</a></li>
                 <li><a class="btn btn-danger pull-right" href="logout.php">Logout</a></li>
             </ul>   
         </div>

@@ -6,7 +6,9 @@
 	if(!isset($_SESSION['visitor'])) {
 		Redirect::to('index.php');
 	}
-	$visitor = Db::getInstance()->query("SELECT * FROM visitors");
+
+	$id = $_SESSION['visitor'];
+	$visitor = Db::getInstance()->query("SELECT * FROM visitors WHERE fb_id = '$id'");
 	if (!$visitor->count()) {
 		echo 'n';
 	} else {
