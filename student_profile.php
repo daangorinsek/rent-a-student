@@ -33,10 +33,18 @@ if(!$user->isLoggedIn()) {
 		<div class="container">
 			<a class="navbar-brand" href="index.php">Rent a Student</a>
 			<ul class="nav nav-pills pull-right" style="margin-top: 5px;">
-	            <li><a href="student_page.php">Find a student</a></li>
-	            <li><a href="profile.php">Profile</a></li>
-	            <li><a class="btn btn-danger pull-right" href="logout.php">Logout</a></li>
-          	</ul>	
+				<?php if(isset($_SESSION['visitor'])) { ?>
+				<li><a href="student_page.php">Find a student</a></li>
+				<li><a href="visitor_profile.php">My Profile</a></li>
+				<?php } else if($user->isLoggedIn()) { ?>
+				<li><a href="student_page.php">Other Students</a></li>
+				<li><a href="student_profile.php">My Profile</a></li>
+				<?php } ?>
+				<?php if($user->hasPermission('admin')) { ?>
+				<li><a href="admin_panel.php">Admin</a></li>
+				<?php } ?>
+				<li><a class="btn btn-danger" href="logout.php">Logout</a></li>
+			</ul>   	
 		</div>
 	</nav>
 
@@ -46,6 +54,10 @@ if(!$user->isLoggedIn()) {
 		<form action="" method="post" role="form" >
 
 			<img id="profile-pic" class="pull-left" src="<?php echo $user->data()->photo_url; ?>" />
+
+			<?php if($user->hasPermission('admin')) { ?>
+			<div id="admin-tag">Admin</div>
+			<?php } ?>
 
 			<textarea id="aboutme" class="form-control" name="about" rows="5" disabled><?php echo escape($user->data()->description); ?></textarea>
 			<div class="input-group">

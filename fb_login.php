@@ -64,7 +64,7 @@
                     'photo_url' => $profile_pic,
                     'gender' => $gender,
                     'fb_id' => $uid,
-                    'group' => 2
+                    'group' => 1
                 ));
                 include("visitor_profile.php");
                 $_SESSION['visitor'] = $uid;

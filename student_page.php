@@ -40,14 +40,15 @@ if(!isset($_SESSION['visitor'])) {
 		<div class="container">
 			<a class="navbar-brand" href="index.php">Rent a Student</a>
 			<ul class="nav nav-pills pull-right" style="margin-top: 5px;">
-				<li><a href="student_page.php">Find a student</a></li>
 				<?php if(isset($_SESSION['visitor'])) { ?>
+				<li><a href="student_page.php">Find a student</a></li>
 				<li><a href="visitor_profile.php">My Profile</a></li>
 				<?php } else if($user->isLoggedIn()) { ?>
+				<li><a href="student_page.php">Other Students</a></li>
 				<li><a href="student_profile.php">My Profile</a></li>
 				<?php } ?>
 				<li><a class="btn btn-danger pull-right" href="logout.php">Logout</a></li>
-			</ul>   
+			</ul>    
 		</div>
 	</nav>            
 
