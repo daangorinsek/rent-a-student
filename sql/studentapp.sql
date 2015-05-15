@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2015 at 03:28 PM
+-- Generation Time: May 15, 2015 at 03:57 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -46,18 +46,22 @@ CREATE TABLE IF NOT EXISTS `users` (
   `name` varchar(60) NOT NULL,
   `description` varchar(255) NOT NULL,
   `photo_url` varchar(255) NOT NULL,
-  `joined` datetime NOT NULL,
   `branch` varchar(255) NOT NULL,
   `grade` varchar(11) NOT NULL,
+  `date` varchar(255) NOT NULL,
   `group` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `salt`, `name`, `description`, `photo_url`, `joined`, `branch`, `grade`, `group`) VALUES
-(8, 'r0372514@student.thomasmore.be', '^ˆH˜Ú(qQÐåoÆ)''s`=\rj«½Ö*ïrBØ', '\\v¿A±rÝ|ì½Dõ}÷3\\(Ÿ´À\rlC{B¾(=¦', 'Mike Radino', '', '', '2015-05-13 14:35:52', 'Design', '2de jaar', '1');
+INSERT INTO `users` (`id`, `username`, `password`, `salt`, `name`, `description`, `photo_url`, `branch`, `grade`, `date`, `group`) VALUES
+(15, 'r0372514@student.thomasmore.be', '^ˆH˜Ú(qQÐåoÆ)''s`=\rj«½Ö*ïrBØ', 'ådï¯uƒlå›4–\\qÄR]ògðÝd±r«KI5Én', 'Mike Radino', '', 'uploads/5554a32faf7727.86486595.jpg', 'Design', '3de jaar', '2015-05-15', '1'),
+(16, 'r0334568@student.thomasmore.be', '^ˆH˜Ú(qQÐåoÆ)''s`=\rj«½Ö*ïrBØ', 'Bí¸óú—Þ¶I§?Áƒ‚–pîŒbjÒâ­,[hd ¹ñ', 'test naam 1', '', 'uploads/5554a9db44a506.00908468.jpg', 'Design', '1ste jaar', '2015-06-26', '1'),
+(17, 'r0359437@student.thomasmore.be', '^ˆH˜Ú(qQÐåoÆ)''s`=\rj«½Ö*ïrBØ', 'å³æ5bxˆ‰Yµ¤zèÑr¼ˆô–ç/d2ÏŠö¿', 'test naam 2', '', 'uploads/5554a9f734b393.20493851.jpg', 'Developement', '2de jaar', '2015-05-20', '1'),
+(18, 'r0369854@student.thomasmore.be', '^ˆH˜Ú(qQÐåoÆ)''s`=\rj«½Ö*ïrBØ', 'ä•]Ê¾S¸¨h²©t669î2y•éÎwogç ¯lK', 'test naam 3', '', 'uploads/5554aa18916891.72788811.jpg', 'Developement', '3de jaar', '2015-05-27', '1'),
+(19, 'r0372515@student.thomasmore.be', '^ˆH˜Ú(qQÐåoÆ)''s`=\rj«½Ö*ïrBØ', '@ûf^jnÃlÇBÍ[Ü¿É±­â÷8-mÛôPêd˜zªå', 'test naam 4', '', 'uploads/5554aa3e0ad735.49069087.jpg', 'Developement', '2de jaar', '2015-05-27', '1');
 
 -- --------------------------------------------------------
 
@@ -69,19 +73,22 @@ CREATE TABLE IF NOT EXISTS `user_sessions` (
 `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `hash` varchar(64) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `user_sessions`
+-- Table structure for table `visitors`
 --
 
-INSERT INTO `user_sessions` (`id`, `user_id`, `hash`) VALUES
-(2, 2, '21339981cf206af8b298ad9ac8269009d48a8b8424fc8d24dd621f8d0b8785cf'),
-(3, 4, '1381756f339377a1d62e6c99ad8ec7cbb4106639bc032680012f0f8f6b856ad7'),
-(4, 5, '6a79e7f21180969e46cb4402124e39d95acc3fef4d7983f48dd4c57b636eccb9'),
-(5, 6, '7c802cb6b17896fbab3fa6bc47550ce9e0e4af3a6c517a64ff57bfa848173d92'),
-(6, 7, '0d944c14720d8359d89658e14d12004074cd384b04a28b948def6aa316496825'),
-(7, 8, 'e6b8f9c6d4d55dd8e96159961a2b246bd4f06d98faa02dca8ce1813cc65226e9');
+CREATE TABLE IF NOT EXISTS `visitors` (
+`id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `photo_url` varchar(255) NOT NULL,
+  `gender` varchar(255) NOT NULL,
+  `group` varchar(255) NOT NULL,
+  `fb_id` varchar(64) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -106,6 +113,12 @@ ALTER TABLE `user_sessions`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `visitors`
+--
+ALTER TABLE `visitors`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -118,12 +131,17 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `user_sessions`
 --
 ALTER TABLE `user_sessions`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `visitors`
+--
+ALTER TABLE `visitors`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

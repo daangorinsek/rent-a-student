@@ -16,7 +16,7 @@ if (Input::exists()) {
             $login = $user->login(Input::get('username'), Input::get('password'), $remember);
 
             if($login) {
-                Redirect::to('profile.php');
+                Redirect::to('student_profile.php');
             } else {
                 echo 'Login failed';
             }

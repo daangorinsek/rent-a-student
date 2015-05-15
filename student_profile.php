@@ -2,14 +2,12 @@
 
 require_once 'core/init.php';
 
-if(Session::exists('home')) {
-  echo '<p>' . Session::flash('home') . '</p>';
-}
 
 $user = new User();
-if ($user->isLoggedIn()) { ?>
-
-<!DOCTYPE html>
+if(!$user->isLoggedIn()) {
+	Redirect::to('login.php');
+}
+?><!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8"/>
@@ -24,12 +22,11 @@ if ($user->isLoggedIn()) { ?>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css"/>
 
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
 </head>
-
 <body>
 	<nav class="navbar navbar-default navbar-static-top">
 		<div class="container">
@@ -87,8 +84,3 @@ if ($user->isLoggedIn()) { ?>
 
 </body>
 </html>
-
-<?php
-} else {
-	echo '<p>You need to <a href="login.php">log in</a> first</p>';
-}

@@ -1,31 +1,27 @@
 <?php 
-
-      require_once('fb_login.php');
-
-
+	require_once 'core/init.php';
+	require_once('fb_login.php');
 
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="keywords" content=""/>
+    <meta name="author" content=""/>
 
-	<title>Edit Profile</title>
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <title>Your Profile</title>
 
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
 
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-<!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
 <body>
@@ -33,64 +29,40 @@
 
 	<nav class="navbar navbar-default navbar-static-top">
 		<div class="container">
-			<a class="navbar-brand" href="#">Rent a Student</a>
-
+			<a class="navbar-brand" href="index.php">Rent a Student</a>
+			<ul class="nav nav-pills pull-right" style="margin-top: 5px;">
+	            <li><a href="student_page.php">Find a student</a></li>
+	            <li><a href="profile.php">Profile</a></li>
+	            <li><a class="btn btn-danger pull-right" href="logout.php">Logout</a></li>
+          	</ul>	
 		</div>
 	</nav>
 
 
-	<div class="container">
+	<div class="container" style="margin-top: 50px; max-width: 960px;">
 
+		<form action="" method="post" role="form" >
 
-		<br />
+			<img id="profile-pic" class="" src="<?php echo $profile_pic; ?>"/>
 
-
-		<form action="" method="post" role="form">
-			
-			
-			
-			<div class="row">
-			<div class="col-md-offset-3 col-md-6">
-				<div class="form-group">
-		
-					<div class="panel panel-default">
-					
-						<div class="panel-heading"><strong class=""> Welkom <?php echo $name; ?> </strong></div>
-						<ul class="list-group">
-						<li class="list-group-item"><?php echo "<img class='img-circle' src=\"" . $profile_pic . "\" />"; ?></li>
-						<li class="list-group-item text-right"><span class="pull-left"><strong class="">Firstname</strong></span> <?php echo $firstname; ?> </li>
-						<li class="list-group-item text-right"><span class="pull-left"><strong class="">Lastname</strong></span><?php echo $lastname; ?></li>
-						<li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender</strong></span> <?php echo $gender; ?></li>
-
-						
-						</ul>
-					
-					
-
-				</div>
-
-							<p><a class='btn btn-primary' href='student_page.php' role='button'>Boek een rondleiding</a>
-
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+				<input class="form-control" id="name" type="text" name="name" value="<?php echo $name; ?>" disabled>
 			</div>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-heart"></i></span>
+				<input type="text" class="form-control" name="email" value="<?php echo $gender; ?>" disabled>                                    
 			</div>
-
-
-			
-
-
 		</form>
 
+	</div>
+	
 
-		
 
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-tab.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
+	<!-- SCRIPTS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
     
 
 </body>
