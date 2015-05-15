@@ -8,6 +8,17 @@
 		Redirect::to('index.php');
 	}
 
+	if (!empty($_POST['add_admin'])) {
+		$id = $_POST['add_admin'];
+        try {
+        	$user = Db::getInstance()->query("UPDATE `studentapp`.`users` SET `group` = '2' WHERE `users`.`id` = $id;");
+            Redirect::to('admin_panel.php');
+        } catch(Exception $e) {
+            $err = $e->getMessage();
+           // echo 'err';
+        }
+    }
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,17 +44,12 @@
 		<div class="container">
 			<a class="navbar-brand" href="index.php">Rent a Student</a>
 			<ul class="nav nav-pills pull-right" style="margin-top: 5px;">
-				<?php if(isset($_SESSION['visitor'])) { ?>
-				<li><a href="student_page.php">Find a student</a></li>
-				<li><a href="visitor_profile.php">My Profile</a></li>
-				<?php } else if($user->isLoggedIn()) { ?>
 				<li><a href="student_page.php">Students</a></li>
 				<li><a href="student_profile.php">My Profile</a></li>
-				<?php } ?>
 				<?php if($user->hasPermission('admin')) { ?>
 				<li><a href="admin_panel.php">Admin</a></li>
 				<?php } ?>
-				<li><a class="btn btn-danger" href="logout.php">Logout</a></li>
+				<li><a class="btn btn-danger" href="admin_panel.php">Back</a></li>
 			</ul>   	
 		</div>
 	</nav>
@@ -54,9 +60,17 @@
                 <div class="panel-heading"><div class="panel-title">Admin Panel</div></div>     
                 <div style="padding-top:30px" class="panel-body" >
 
-    			<p><a href="admin_add.php" class="btn btn-success">Add new Admin</a></p>
-    			<p><a href="admin_bookings.php" class="btn btn-success">View Bookings</a></p>
-    			<p><a href="admin_visitors.php" class="btn btn-success">View Visitors</a></p>
+                	<?php $user = Db::getInstance()->query("SELECT * FROM `users` WHERE `group` = '1'"); ?>
+
+					<?php foreach ($user->results() as $user) { ?>
+						<div class='col-lg-3 col-md-4 col-xs-6 text-center thumbnail'>
+							<h4 ><?php echo $user->name; ?></h4>
+							<img class='img-responsive' src="<?php echo $user->photo_url; ?>" style="margin-bottom: 10px;">
+							<form action="" method="post">
+								<button type="submit" class='btn btn-success' name="add_admin" value="<?php echo $user->id; ?>"/>Add admin</button>
+							</form>
+						</div>
+					<?php } ?>
 
                 </div>                     
             </div>  

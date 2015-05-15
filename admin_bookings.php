@@ -43,7 +43,7 @@
 				<?php if($user->hasPermission('admin')) { ?>
 				<li><a href="admin_panel.php">Admin</a></li>
 				<?php } ?>
-				<li><a class="btn btn-danger" href="logout.php">Logout</a></li>
+				<li><a class="btn btn-danger" href="admin_panel.php">Back</a></li>
 			</ul>   	
 		</div>
 	</nav>
@@ -53,10 +53,6 @@
             <div class="panel panel-info" >
                 <div class="panel-heading"><div class="panel-title">Admin Panel</div></div>     
                 <div style="padding-top:30px" class="panel-body" >
-
-    			<p><a href="admin_add.php" class="btn btn-success">Add new Admin</a></p>
-    			<p><a href="admin_bookings.php" class="btn btn-success">View Bookings</a></p>
-    			<p><a href="admin_visitors.php" class="btn btn-success">View Visitors</a></p>
 
                 </div>                     
             </div>  
