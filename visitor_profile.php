@@ -2,6 +2,18 @@
 	require_once 'core/init.php';
 	require_once('fb_login.php');
 
+	$visitor = new Visitor();
+	if(!isset($_SESSION['visitor'])) {
+		Redirect::to('index.php');
+	}
+	$visitor = Db::getInstance()->query("SELECT * FROM visitors");
+	if (!$visitor->count()) {
+		echo 'n';
+	} else {
+		foreach ($visitor->results() as $visitor) {
+			//
+		}
+	}
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,10 +43,14 @@
 		<div class="container">
 			<a class="navbar-brand" href="index.php">Rent a Student</a>
 			<ul class="nav nav-pills pull-right" style="margin-top: 5px;">
-	            <li><a href="student_page.php">Find a student</a></li>
-	            <li><a href="profile.php">Profile</a></li>
-	            <li><a class="btn btn-danger pull-right" href="logout.php">Logout</a></li>
-          	</ul>	
+				<li><a href="student_page.php">Find a student</a></li>
+				<?php if(isset($_SESSION['visitor'])) { ?>
+				<li><a href="visitor_profile.php">My Profile</a></li>
+				<?php } else if($user->isLoggedIn()) { ?>
+				<li><a href="student_profile.php">My Profile</a></li>
+				<?php } ?>
+				<li><a class="btn btn-danger pull-right" href="logout.php">Logout</a></li>
+			</ul>   
 		</div>
 	</nav>
 
@@ -43,15 +59,15 @@
 
 		<form action="" method="post" role="form" >
 
-			<img id="profile-pic" class="" src="<?php echo $profile_pic; ?>"/>
+			<img id="profile-pic" class="" src="<?php echo $visitor->photo_url; ?>"/>
 
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-				<input class="form-control" id="name" type="text" name="name" value="<?php echo $name; ?>" disabled>
+				<input class="form-control" id="name" type="text" name="name" value="<?php echo $visitor->name; ?>" disabled>
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-heart"></i></span>
-				<input type="text" class="form-control" name="email" value="<?php echo $gender; ?>" disabled>                                    
+				<input type="text" class="form-control" name="email" value="<?php echo $visitor->gender; ?>" disabled>                                    
 			</div>
 		</form>
 

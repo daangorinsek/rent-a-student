@@ -8,10 +8,10 @@ if(!$user->isLoggedIn()) {
 	Redirect::to('login.php');
 }
 */
-
+/*
 if(!isset($_SESSION['visitor'])) {
 	Redirect::to('index.php');
-}
+}*/
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +41,11 @@ if(!isset($_SESSION['visitor'])) {
 			<a class="navbar-brand" href="index.php">Rent a Student</a>
 			<ul class="nav nav-pills pull-right" style="margin-top: 5px;">
 				<li><a href="student_page.php">Find a student</a></li>
-				<li><a href="student_profile.php">Profile</a></li>
+				<?php if(isset($_SESSION['visitor'])) { ?>
+				<li><a href="visitor_profile.php">My Profile</a></li>
+				<?php } else if($user->isLoggedIn()) { ?>
+				<li><a href="student_profile.php">My Profile</a></li>
+				<?php } ?>
 				<li><a class="btn btn-danger pull-right" href="logout.php">Logout</a></li>
 			</ul>   
 		</div>
