@@ -30,6 +30,7 @@
 	            'visitor_name' => $visitor->name,
 	            'date' => $user->date,
 	        ));
+<<<<<<< HEAD
 
 	        $bezoeker= $visitor->name;
 	       	$datum = $user->date;
@@ -44,12 +45,15 @@
 
 
 
+=======
+>>>>>>> origin/master
 	    } catch(Exception $e) {
 	        $err = $e->getMessage();
 	    }
 	} else {
 		Redirect::to('student_page.php');
 	}
+<<<<<<< HEAD
 
 
 
@@ -58,6 +62,8 @@
 
 
 
+=======
+>>>>>>> origin/master
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
