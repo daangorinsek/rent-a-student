@@ -87,8 +87,8 @@ if(!isset($_SESSION['visitor'])) {
 			<div class='col-lg-3 col-md-4 col-xs-6 text-center thumbnail'>
 				<h4 ><?php echo $user->name; ?></h4>
 				<img class='img-responsive' src="<?php echo $user->photo_url; ?>" style="margin-bottom: 10px;">
-				<form action="booking.php" method="get">
-					<p><button type="submit" class='btn btn-primary' value="<?php echo $user->id; ?>"/>Boek een rondleiding</button></p>
+				<form action="booking.php" method="post">
+					<p><button type="submit" name="user_id" class='btn btn-primary' value="<?php echo $user->id; ?>"/>Boek een rondleiding</button></p>
 				</form>
 				<form action="profile_general.php" method="get">
 					<p><button type="submit" class='btn btn-success' name="profile_id" value="<?php echo $user->id; ?>"/>Meer informatie</button></p>

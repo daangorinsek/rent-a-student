@@ -66,16 +66,18 @@
                     'fb_id' => $uid,
                     'group' => 1
                 ));
-                include("visitor_profile.php");
+                
                 $_SESSION['visitor'] = $uid;
+                include("visitor_profile.php");
             } catch(Exception $e) {
                 $err = $e->getMessage();
             }
         } else {
             $visitor = new Visitor();
             try {
-                include("visitor_profile.php");
+                
                 $_SESSION['visitor'] = $uid;
+                include("visitor_profile.php");
             } catch(Exception $e) {
                 $err = $e->getMessage();
             }
