@@ -48,7 +48,7 @@
 				<?php if($user->hasPermission('admin')) { ?>
 				<li><a href="admin_panel.php">Admin</a></li>
 				<?php } ?>
-				<li><a class="btn btn-danger" href="logout.php">Logout</a></li>
+				<li><a class="btn btn-danger" href="admin_panel.php">Back</a></li>
 			</ul>   	
 		</div>
 	</nav>
@@ -57,7 +57,7 @@
         <div class="container" style="margin-top: 50px; max-width: 960px;">                
             <div class="panel panel-info" >
                 <div class="panel-heading"><div class="panel-title">Admin control</div></div>    
-                <form action="" method="post" style="padding-top:30px" class="panel-body" >
+                <div action="" method="post" style="padding-top:30px" class="panel-body" >
  					<table class="table table-condensed" style="text-align: left;">
 				    	<thead style="font-weight: bold;">
 				    		<colgroup>
@@ -80,10 +80,16 @@
 					        </tr>
 				   		</thead>
 				    	<tbody>
-	                	<?php $user = Db::getInstance()->query("SELECT * FROM `users` ORDER BY `group` DESC"); ?>
+	                	<?php $user = Db::getInstance()->query("SELECT * FROM `users`"); ?>
 	                	<?php foreach ($user->results() as $user) { ?>
 	                	<tr>                	
-							<td style="font-weight: bold;"><?php echo $user->id; ?></td>
+							<td>
+								<form action="admin_update.php" method="get">
+									<button type="submit" class='btn-success' name="user_id" value="<?php echo $user->id; ?>"/>
+										<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+									</button>
+								</form>
+							</td>
 							<td><input value="<?php echo $user->username; ?>" disabled></td>
 							<td><input value="<?php echo $user->name; ?>" disabled></td>
 							<td><input value="<?php echo $user->branch; ?>" disabled></td>
@@ -94,7 +100,7 @@
 						</tr>
 						</tbody>
 				    </table>
-                </form>                     
+                </div>                     
             </div>  
         </div>
     </div>
