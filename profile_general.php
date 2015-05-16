@@ -46,7 +46,6 @@ if (isset($_GET['profile_id'])) {
 		</div>
 	</nav>
 
-
 	<div class="container" style="margin-top: 50px; max-width: 960px;">
 
 		<form action="" method="post" role="form" >
@@ -74,12 +73,18 @@ if (isset($_GET['profile_id'])) {
 				<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
 				<input class="form-control" name="date" type="text"  value="<?php echo $user->date; ?>" disabled>
 			</div>
+			<?php
+				$user = new User();
+				if($user->hasPermission('admin')) { 
+			?>
+			<form action="admin_update.php" method="post">
+					<button type="submit" class='btn btn-success' name="user_id" value="<?php echo $_GET['profile_id']; ?>"/>Update informatie</button>
+			</form>
+			<?php } ?>
 
 		</form>
 
 	</div>
-
-
 
 	<!-- SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
