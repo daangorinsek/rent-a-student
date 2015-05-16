@@ -5,7 +5,6 @@
   if (!empty($_POST['fb_signup'])) {
     Redirect::to('fb_login.php');
   }
-
 ?>
 <!DOCTYPE html> 
 <html lang="en">
@@ -61,11 +60,11 @@
     <div class="container">
       <h1>WeAreIMD</h1>
       <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-      <form id="subscribe-form" action="" method="post">
+      <form id="subscribe-form" action="subscribe.php" method="post">
         <div class="input-group input-group-lg">
-          <input type="text" class="form-control" placeholder="your email address">
+          <input type="text" class="form-control" name="mail" placeholder="your email address">
           <span class="input-group-btn">
-            <button class="btn btn-primary" type="button">Subscribe</button>
+            <button class="btn btn-primary" type="submit">Subscribe</button>
           </span>
         </div>
       </form>
