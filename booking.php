@@ -33,6 +33,20 @@
 		            'visitor_mail' => $visitor->mail,
 		            'date' => $user->date,
 		        ));
+		     
+
+	        $to = $user->username; 
+			$email_subject = "Nieuwe boeking rent-a-student door ".$visitor->name;
+			$email_body = "Hey, je bent net geboekt voor een rondleiding.\n\n". $visitor->name ." heeft je net geboekt voor een rondleiding op $datum\n\n";
+			$headers = "From: noreply@rent-a-student.be\n";
+			$reply = "Reply to : ". $visitor->mail;
+		
+			$mail = mail($to,$email_subject,$email_body,$headers);
+			
+
+
+
+
 		    } catch(Exception $e) {
 		        $err = $e->getMessage();
 		    }

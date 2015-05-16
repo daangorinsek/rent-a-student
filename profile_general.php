@@ -13,6 +13,7 @@ if (isset($_GET['profile_id'])) {
 	foreach ($user->results() as $user) {
 	}
 }
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,6 +81,25 @@ if (isset($_GET['profile_id'])) {
 			<form action="admin_update.php" method="post">
 					<button type="submit" class='btn btn-success' name="user_id" value="<?php echo $_GET['profile_id']; ?>"/>Update informatie</button>
 			</form>
+			<?php } ?>
+
+					
+				<?php $feedback = new Feedback();
+				$feedback = Db::getInstance()->query("SELECT * FROM feedbacks");
+
+				foreach ($feedback->results() as $feedback) { ?>
+
+			
+				<li><?php echo $feedback->message; ?></li>
+				<?php } ?>
+
+
+			<?php if(isset($_SESSION['visitor'])) { ?>
+				<form action="" method="post">
+
+					<textarea id="message" class="form-control" name="message" rows="5"></textarea>
+					<button type="submit" class='btn btn-success' name="user_id" value="<?php echo $user->id; ?>"/>Post</button>
+				</form>
 			<?php } ?>
 
 		</form>
