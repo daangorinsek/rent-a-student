@@ -1,11 +1,6 @@
 <?php
 
 require_once 'core/init.php';
-/*
-if(!$user->isLoggedIn()) {
-	Redirect::to('login.php');
-}
-*/
 
 if (isset($_GET['profile_id'])) {
 	$id = $_GET['profile_id'];
@@ -73,17 +68,9 @@ if (isset($_GET['profile_id'])) {
 				<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
 				<input class="form-control" name="date" type="text"  value="<?php echo $user->date; ?>" disabled>
 			</div>
-			<?php
-				$user = new User();
-				if($user->hasPermission('admin')) { 
-			?>
-			<form action="admin_update.php" method="post">
-					<button type="submit" class='btn btn-success' name="user_id" value="<?php echo $_GET['profile_id']; ?>"/>Update informatie</button>
-			</form>
-			<?php } ?>
+			
 
 		</form>
-
 	</div>
 
 	<!-- SCRIPTS -->
