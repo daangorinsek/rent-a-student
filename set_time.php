@@ -16,34 +16,20 @@
 
 
 	    $user = new User();
-	    $userID = $_POST['user_id'];
-		$user = Db::getInstance()->query("SELECT * FROM users WHERE id = '$userID'");
+		$user = Db::getInstance()->query("SELECT * FROM users");
 		foreach ($user->results() as $user) {
-					//
+			//
 		}
-		if(empty($visitor->mail)) {
-		    // Do nothing
-		} else {
-			try {
-		    	$booking = new Booking();
-		    	$booking = Db::getInstance()->query("SELECT * FROM bookings WHERE visitor_name = '$visitor->name'");
-		    	if (!$booking->count()) {
-		    		$booking = new Booking();
-		    		$booking->create(array(
-		            'student_name' => $user->name,
-		            'student_mail' =>$user->username,
-		            'visitor_name' => $visitor->name,
-		            'visitor_mail' => $visitor->mail,
-		            'date' => $user->date,
-		        ));
-		    	} else {
-		    		$userAlreadyBooked = "U heeft al reeds een booking gemaakt.";
-		    		return $userAlreadyBooked;
-		    	}
-		    } catch(Exception $e) {
-		        $err = $e->getMessage();
-		    }
-		}
+
+		try {
+	    	$booking = new Booking();
+	    	$time = $_POST['time'];
+	    	$visitorName =$visitor->name;
+	    	$booking = Db::getInstance()->query("UPDATE bookings SET `time` = '$time' WHERE `bookings`.`visitor_name` = '$visitorName'");
+	    	Redirect::to('booking_success.php');
+	    } catch(Exception $e) {
+	        $err = $e->getMessage();
+	    }
 	} else {
 		Redirect::to('student_page.php');
 	}
@@ -89,11 +75,11 @@
                 	<?php } else { ?>
        				<span class="label label-success">Success</span>
        				<p>Alvast bedankt voor jou interesse, <?php echo $visitor->name; ?>!</p>
-       				<p>Kies hier nog even het uur waarop je wil komen. (10:00 - 14:00)</p>
+       				<p>Jou rondleiding zal plaatsvinden op <?php echo $user->date; ?> met <?php echo $user->name; ?> als begeleider.</p>
        				<form action="set_time.php" method="post">
 					  Select a time:
 					  <input type="time" name="time">
-					  <input type="submit"class="btn btn-primary">
+					  <input type="submit" class="btn btn-primary">
 					</form>
        				<?php } ?>
                 </div>                     

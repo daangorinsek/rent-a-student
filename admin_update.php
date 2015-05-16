@@ -22,26 +22,6 @@
 		Redirect::to('admin_control.php');
 		//foreach ($user->results() as $user) {}
 	}
-/*
-	if (Input::exists()) {
-        try {
-        	$id = $_GET['user_id'];
-        	$user = Db::getInstance()->get('users', array('id', '=', $id));
-            $user->update(array(
-                'username' => Input::get('username'),
-                'name' => Input::get('name'),
-                'branch' => Input::get('branch'),
-                'grade' => Input::get('grade'),
-                'date' => Input::get('date'),
-                'group' => Input::get('group')
-            ));
-            echo 'ok';
-            //Redirect::to('admin_control.php');
-        } catch(Exception $e) {
-            die($e->getMessage());
-        }
-}
-*/
 ?><!DOCTYPE html>
 <html lang="en">
 <head>

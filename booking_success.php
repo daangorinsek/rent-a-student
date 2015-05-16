@@ -11,9 +11,14 @@
 		//
 	}
 	$user = new User();
-	$userID = $_POST['user_id'];
-	$user = Db::getInstance()->query("SELECT * FROM users WHERE id = '$userID'");
+	$user = Db::getInstance()->query("SELECT * FROM users");
 	foreach ($user->results() as $user) {
+		//
+	}
+
+	$booking = new Booking();
+	$booking = Db::getInstance()->query("SELECT * FROM bookings");
+	foreach ($booking->results() as $booking) {
 		//
 	}
 ?><!DOCTYPE html>
@@ -43,7 +48,7 @@
 			<ul class="nav nav-pills pull-right" style="margin-top: 5px;">
 				<li><a href="student_page.php">Students</a></li>
 				<li><a href="visitor_profile.php">My Profile</a></li>
-				<li><a class="btn btn-danger" href="admin_panel.php">Back</a></li>
+				<li><a class="btn btn-danger" href="student_page.php">Back</a></li>
 			</ul>   	
 		</div>
 	</nav>
@@ -51,15 +56,10 @@
 	<div class="container">    
         <div id="box" style="margin-top:70px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
             <div class="panel panel-info" >
-                <div class="panel-heading"><div class="panel-title">Booking Confirmation</div></div>     
+                <div class="panel-heading"><div class="panel-title">Booking Date</div></div>     
                 <div style="padding-top:30px" class="panel-body" >
-                	<?php if(empty($visitor->mail)) { ?>
-                	<?php echo '<p>Registreer eerst uw email <a href="visitor_profile.php">hier</a> aub.</p>'; ?>
-                	<?php } else { ?>
-       				<span class="label label-success">Success</span>
-       				<p>Alvast bedankt voor jou interesse, <?php echo $visitor->name; ?>!</p>
-       				<p>Jou rondleiding zal plaatsvinden op <?php echo $user->date; ?> met <?php echo $user->name; ?> als begeleider.</p>
-       				<?php } ?>
+       				<p>Naam: <?php echo $visitor->name; ?></p>
+       				<p>Jou rondleiding zal plaatsvinden op <?php echo $user->date; ?> op <?php echo $booking->time; ?> met <?php echo $user->name; ?> als begeleider.</p>
                 </div>                     
             </div>  
         </div>
