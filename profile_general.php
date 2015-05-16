@@ -2,12 +2,6 @@
 
 require_once 'core/init.php';
 
-if (isset($_GET['profile_id'])) {
-	$id = $_GET['profile_id'];
-	$user = Db::getInstance()->get('users', array('id', '=', $id));
-	foreach ($user->results() as $user) {
-	}
-}
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,16 +28,34 @@ if (isset($_GET['profile_id'])) {
 		<div class="container">
 			<a class="navbar-brand" href="index.php">Rent a Student</a>
 			<ul class="nav nav-pills pull-right" style="margin-top: 5px;">
-	            <li><a href="student_page.php">Find a student</a></li>
-	            <li><a href="profile.php">Profile</a></li>
-	            <li><a class="btn btn-danger pull-right" href="student_page.php">Back</a></li>
-          	</ul>	
+				<?php $user = new User(); ?>
+				<?php if(isset($_SESSION['visitor'])) { ?>
+				<li><a href="student_page.php">Find a student</a></li>
+				<li><a href="visitor_profile.php">My Profile</a></li>
+				<?php } else if($user->isLoggedIn()) { ?>
+				<li><a href="student_page.php">Students</a></li>
+				<li><a href="student_profile.php">My Profile</a></li>
+				<?php } ?>
+				<?php if($user->hasPermission('admin')) { ?>
+				<li><a href="admin_panel.php">Admin</a></li>
+				<?php } ?>
+				<li><a class="btn btn-danger" href="logout.php">Logout</a></li>
+			</ul>	
 		</div>
 	</nav>
 
 	<div class="container" style="margin-top: 50px; max-width: 960px;">
 
 		<form action="" method="post" role="form" >
+
+			<?php
+			if (isset($_GET['profile_id'])) {
+				$id = $_GET['profile_id'];
+				$user = Db::getInstance()->get('users', array('id', '=', $id));
+				foreach ($user->results() as $user) {
+				}
+			}
+			?>
 
 			<img id="profile-pic" class="pull-left" src="<?php echo $user->photo_url; ?>" />
 

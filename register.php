@@ -77,7 +77,8 @@ if (Input::exists()) {
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
 
@@ -94,23 +95,25 @@ if (Input::exists()) {
                     <div style="display:none" id="signup-alert" class="alert alert-danger col-sm-12"></div>
 
                     <form id="signupform" class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
-                        <div style="margin-bottom: 25px" class="input-group">
+                        <div style="margin-bottom: 25px; max-width: 90%;" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input id="signup-username" type="text" class="form-control" name="username" value="" placeholder="Your school email (r0xxxxxx@student.thomasmore.be)">                                     
+                            <input id="username" type="text" class="form-control" name="username" value="" placeholder="Your school email (r0xxxxxx@student.thomasmore.be)">
+                              <span id="user-result" style="max-width: 10%;position: absolute;right: -30px;top: 5px;">
+                              </span>                                  
                         </div>
-                        <div style="margin-bottom: 25px" class="input-group">
+                        <div style="margin-bottom: 25px; max-width: 90%;" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                             <input id="signup-password" type="password" class="form-control" name="password" placeholder="Enter your password">
                         </div>
-                        <div style="margin-bottom: 25px" class="input-group">
+                        <div style="margin-bottom: 25px; max-width: 90%;" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                             <input id="signup-password_again" type="password" class="form-control" name="password_again" placeholder="Enter your password again">
                         </div>
-                        <div style="margin-bottom: 25px" class="input-group">
+                        <div style="margin-bottom: 25px; max-width: 90%;" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input id="signup-name" type="text" class="form-control" name="name" value="<?php echo Input::get('name'); ?>" placeholder="Enter your full name">
                         </div>
-                        <div style="margin-bottom: 25px" class="input-group">
+                        <div style="margin-bottom: 25px; max-width: 90%;" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
                             <select name="branch" class="form-control">
                                 <option value="">- Selecteer jou richting -</option>
@@ -118,7 +121,7 @@ if (Input::exists()) {
                                 <option value="Developement">Development</option>
                             </select>
                         </div>
-                        <div style="margin-bottom: 25px" class="input-group">
+                        <div style="margin-bottom: 25px; max-width: 90%;" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
                             <select name="grade" class="form-control">
                                 <option value="">- Selecteer jou graad -</option>
@@ -127,7 +130,7 @@ if (Input::exists()) {
                                 <option value="3de jaar">3de jaar</option>
                             </select>
                         </div>
-                        <div style="margin-bottom: 25px" class="input-group">
+                        <div style="margin-bottom: 25px; max-width: 90%;" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-upload"></i></span>
                             <input id="photo" type="file" class="form-control" name="photo">
                         </div>
@@ -138,12 +141,6 @@ if (Input::exists()) {
                 </div>                     
             </div>  
         </div>
-    
-
-    <!-- SCRIPTS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
 
 </body>
 </html>

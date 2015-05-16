@@ -1,6 +1,7 @@
 <?php
 
 class Db {
+	private static $db;
 	private static $_instance = null;
 	private $_pdo, $_query, $_error = false, $_results, $_count = 0;
 
@@ -17,6 +18,16 @@ class Db {
 			self::$_instance = new Db();
 		}
 		return self::$_instance;
+	}
+
+	
+	public static function getInstance2() {
+		if (self::$db === null) {
+			self::$db = new PDO('mysql:host=' . Config::get('mysql/host') . ';dbname=' . Config::get('mysql/db'), Config::get('mysql/username'), Config::get('mysql/password'));
+			return self::$db;
+		} else {
+			return self::$db;
+		}
 	}
 
 	public function query($sql, $params = array()) {

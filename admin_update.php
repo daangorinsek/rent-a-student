@@ -2,8 +2,7 @@
 
 	require_once 'core/init.php';
 
-	$user = new User();
-	
+	$user = new User();	
 	if(!$user->hasPermission('admin')) {
 		Redirect::to('index.php');
 	}
@@ -17,7 +16,7 @@
 	<meta name="keywords" content=""/>
 	<meta name="author" content=""/>
 
-	<title>Profile Page</title>
+	<title>Admin control</title>
 
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -27,6 +26,12 @@
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
+
+	<style>
+		input {
+			width: 100%;
+		}
+	</style>
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-static-top">
@@ -49,16 +54,47 @@
 	</nav>
 
 	<div class="container">    
-        <div id="box" style="margin-top:70px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+        <div class="container" style="margin-top: 50px; max-width: 960px;">                
             <div class="panel panel-info" >
-                <div class="panel-heading"><div class="panel-title">Admin Panel</div></div>     
-                <div style="padding-top:30px" class="panel-body" >
-
-    			<p><a href="admin_add.php" class="btn btn-success">Add new Admin</a></p>
-    			<p><a href="admin_bookings.php" class="btn btn-success">View Bookings</a></p>
-    			<p><a href="admin_visitors.php" class="btn btn-success">View Visitors</a></p>
-    			<p><a href="admin_control.php" class="btn btn-success">Change Data</a></p>
-                </div>                     
+                <div class="panel-heading"><div class="panel-title">Admin control</div></div>    
+                <form action="" method="post" style="padding-top:30px" class="panel-body" >
+ 					<table class="table table-condensed" style="text-align: left;">
+				    	<thead style="font-weight: bold;">
+				    		<colgroup>
+					    		<col width="25">
+					    		<col width="270">
+					    		<col width="120">
+					    		<col width="110">
+					    		<col width="69">
+					    		<col width="69">
+					    		<col width="25">
+					    	</colgroup>
+					        <tr>
+					          <th>#</th>
+					          <th>Gebruikersnaam/Email</th>
+					          <th>Naam</th>
+					          <th>Richting</th>
+					          <th>Jaar</th>
+					          <th>Beschikbaar</th>
+					          <th>Groep<th>
+					        </tr>
+				   		</thead>
+				    	<tbody>
+	                	<?php $user = Db::getInstance()->query("SELECT * FROM `users` ORDER BY `group` DESC"); ?>
+	                	<?php foreach ($user->results() as $user) { ?>
+	                	<tr>                	
+							<td style="font-weight: bold;"><?php echo $user->id; ?></td>
+							<td><input value="<?php echo $user->username; ?>"></td>
+							<td><input value="<?php echo $user->name; ?>"></td>
+							<td><input value="<?php echo $user->branch; ?>"></td>
+							<td><input value="<?php echo $user->grade; ?>"></td>
+							<td><input value="<?php echo $user->date; ?>"></td>
+							<td><input value="<?php echo $user->group; ?>"></td>
+						<?php } ?>
+						</tr>
+						</tbody>
+				    </table>
+                </form>                     
             </div>  
         </div>
     </div>
