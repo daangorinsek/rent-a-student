@@ -1,12 +1,8 @@
 <?php
 
 require_once 'core/init.php';
-/*
-if(!$user->isLoggedIn()) {
-	Redirect::to('login.php');
-}
-*/
 
+<<<<<<< HEAD
 if (isset($_GET['profile_id'])) {
 	$id = $_GET['profile_id'];
 	$user = Db::getInstance()->get('users', array('id', '=', $id));
@@ -14,6 +10,8 @@ if (isset($_GET['profile_id'])) {
 	}
 }
 
+=======
+>>>>>>> 103464e1335510bdc9ef5eb1373830e33a7c66a7
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,16 +38,34 @@ if (isset($_GET['profile_id'])) {
 		<div class="container">
 			<a class="navbar-brand" href="index.php">Rent a Student</a>
 			<ul class="nav nav-pills pull-right" style="margin-top: 5px;">
-	            <li><a href="student_page.php">Find a student</a></li>
-	            <li><a href="profile.php">Profile</a></li>
-	            <li><a class="btn btn-danger pull-right" href="student_page.php">Back</a></li>
-          	</ul>	
+				<?php $user = new User(); ?>
+				<?php if(isset($_SESSION['visitor'])) { ?>
+				<li><a href="student_page.php">Find a student</a></li>
+				<li><a href="visitor_profile.php">My Profile</a></li>
+				<?php } else if($user->isLoggedIn()) { ?>
+				<li><a href="student_page.php">Students</a></li>
+				<li><a href="student_profile.php">My Profile</a></li>
+				<?php } ?>
+				<?php if($user->hasPermission('admin')) { ?>
+				<li><a href="admin_panel.php">Admin</a></li>
+				<?php } ?>
+				<li><a class="btn btn-danger" href="logout.php">Logout</a></li>
+			</ul>	
 		</div>
 	</nav>
 
 	<div class="container" style="margin-top: 50px; max-width: 960px;">
 
 		<form action="" method="post" role="form" >
+
+			<?php
+			if (isset($_GET['profile_id'])) {
+				$id = $_GET['profile_id'];
+				$user = Db::getInstance()->get('users', array('id', '=', $id));
+				foreach ($user->results() as $user) {
+				}
+			}
+			?>
 
 			<img id="profile-pic" class="pull-left" src="<?php echo $user->photo_url; ?>" />
 
@@ -74,14 +90,7 @@ if (isset($_GET['profile_id'])) {
 				<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
 				<input class="form-control" name="date" type="text"  value="<?php echo $user->date; ?>" disabled>
 			</div>
-			<?php
-				$user = new User();
-				if($user->hasPermission('admin')) { 
-			?>
-			<form action="admin_update.php" method="post">
-					<button type="submit" class='btn btn-success' name="user_id" value="<?php echo $_GET['profile_id']; ?>"/>Update informatie</button>
-			</form>
-			<?php } ?>
+			
 
 					
 				<?php $feedback = new Feedback();
@@ -103,7 +112,6 @@ if (isset($_GET['profile_id'])) {
 			<?php } ?>
 
 		</form>
-
 	</div>
 
 	<!-- SCRIPTS -->

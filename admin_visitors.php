@@ -33,16 +33,9 @@
 		<div class="container">
 			<a class="navbar-brand" href="index.php">Rent a Student</a>
 			<ul class="nav nav-pills pull-right" style="margin-top: 5px;">
-				<?php if(isset($_SESSION['visitor'])) { ?>
-				<li><a href="student_page.php">Find a student</a></li>
-				<li><a href="visitor_profile.php">My Profile</a></li>
-				<?php } else if($user->isLoggedIn()) { ?>
 				<li><a href="student_page.php">Students</a></li>
 				<li><a href="student_profile.php">My Profile</a></li>
-				<?php } ?>
-				<?php if($user->hasPermission('admin')) { ?>
 				<li><a href="admin_panel.php">Admin</a></li>
-				<?php } ?>
 				<li><a class="btn btn-danger" href="admin_panel.php">Back</a></li>
 			</ul>   	
 		</div>
@@ -53,7 +46,25 @@
             <div class="panel panel-info" >
                 <div class="panel-heading"><div class="panel-title">Admin Panel</div></div>     
                 <div style="padding-top:30px" class="panel-body" >
-
+                	<table class="table table-condensed" style="text-align: left;">
+				    	<thead style="font-weight: bold;">
+					        <tr>
+					          <th>Visitor Name</th>
+					          <th>Visitor Email</th>
+					          <th>Date</th>
+					        </tr>
+				   		</thead>
+				    	<tbody>
+	                	<?php $booking = Db::getInstance()->query("SELECT * FROM bookings"); ?>
+	                	<?php foreach ($booking->results() as $booking) { ?>
+	                	<tr>	                	
+							<td><?php echo $booking->visitor_name; ?></td>
+							<td><?php echo $booking->visitor_mail; ?></td>
+							<td><?php echo $booking->date; ?></td>
+						<?php } ?>
+						</tr>
+						</tbody>
+				    </table>
                 </div>                     
             </div>  
         </div>

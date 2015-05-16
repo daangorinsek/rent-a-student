@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2015 at 01:52 PM
+-- Generation Time: May 16, 2015 at 07:39 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -41,8 +41,8 @@ CREATE TABLE IF NOT EXISTS `visitors` (
 --
 
 INSERT INTO `visitors` (`id`, `name`, `photo_url`, `gender`, `mail`, `group`, `fb_id`) VALUES
-(44, 'David Radino', 'http://graph.facebook.com/10206358942715562/picture?width=140&height=140', 'male', 'rmike.be@gmail.com', '1', '10206358942710000'),
-(46, 'Mike Radino', 'http://graph.facebook.com/10206358942715562/picture?width=140&height=140', 'male', 'mike@mail.com', '1', '10206358942715562');
+(44, 'David Radino', 'http://graph.facebook.com/10206358942715562/picture?width=140&height=140', 'male', 'david@gmail.com', '1', '10206358942710000'),
+(46, 'Mike Radino', 'http://graph.facebook.com/10206358942715562/picture?width=140&height=140', 'male', 'rmike.be@gmail.com', '1', '10206358942715562');
 
 --
 -- Indexes for dumped tables

@@ -1,13 +1,26 @@
 <?php
-
 	require_once 'core/init.php';
 
-	$user = new User();
-	
-	if(!$user->hasPermission('admin')) {
+	$visitor = new Visitor();
+	if(!isset($_SESSION['visitor'])) {
 		Redirect::to('index.php');
 	}
+	$visitorID = $_SESSION['visitor'];
+	$visitor = Db::getInstance()->query("SELECT * FROM visitors WHERE fb_id = '$visitorID'");
+	foreach ($visitor->results() as $visitor) {
+		//
+	}
+	$user = new User();
+	$user = Db::getInstance()->query("SELECT * FROM users");
+	foreach ($user->results() as $user) {
+		//
+	}
 
+	$booking = new Booking();
+	$booking = Db::getInstance()->query("SELECT * FROM bookings");
+	foreach ($booking->results() as $booking) {
+		//
+	}
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +30,7 @@
 	<meta name="keywords" content=""/>
 	<meta name="author" content=""/>
 
-	<title>Profile Page</title>
+	<title>Booking</title>
 
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -33,17 +46,9 @@
 		<div class="container">
 			<a class="navbar-brand" href="index.php">Rent a Student</a>
 			<ul class="nav nav-pills pull-right" style="margin-top: 5px;">
-				<?php if(isset($_SESSION['visitor'])) { ?>
-				<li><a href="student_page.php">Find a student</a></li>
-				<li><a href="visitor_profile.php">My Profile</a></li>
-				<?php } else if($user->isLoggedIn()) { ?>
 				<li><a href="student_page.php">Students</a></li>
-				<li><a href="student_profile.php">My Profile</a></li>
-				<?php } ?>
-				<?php if($user->hasPermission('admin')) { ?>
-				<li><a href="admin_panel.php">Admin</a></li>
-				<?php } ?>
-				<li><a class="btn btn-danger" href="logout.php">Logout</a></li>
+				<li><a href="visitor_profile.php">My Profile</a></li>
+				<li><a class="btn btn-danger" href="student_page.php">Back</a></li>
 			</ul>   	
 		</div>
 	</nav>
@@ -51,13 +56,10 @@
 	<div class="container">    
         <div id="box" style="margin-top:70px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
             <div class="panel panel-info" >
-                <div class="panel-heading"><div class="panel-title">Admin Panel</div></div>     
+                <div class="panel-heading"><div class="panel-title">Booking Date</div></div>     
                 <div style="padding-top:30px" class="panel-body" >
-
-    			<p><a href="admin_add.php" class="btn btn-success">Add new Admin</a></p>
-    			<p><a href="admin_bookings.php" class="btn btn-success">View Bookings</a></p>
-    			<p><a href="admin_visitors.php" class="btn btn-success">View Visitors</a></p>
-    			<p><a href="admin_control.php" class="btn btn-success">Change Data</a></p>
+       				<p>Naam: <?php echo $visitor->name; ?></p>
+       				<p>Jou rondleiding zal plaatsvinden op <?php echo $user->date; ?> op <?php echo $booking->time; ?> met <?php echo $user->name; ?> als begeleider.</p>
                 </div>                     
             </div>  
         </div>

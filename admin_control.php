@@ -6,22 +6,7 @@
 	if(!$user->hasPermission('admin')) {
 		Redirect::to('index.php');
 	}
-	
 
-	if (!empty($_POST)) {
-		$id = $_GET['user_id'];
-		$username = Input::get('username');
-		$name = Input::get('name');
-		$branch = Input::get('branch');
-		$grade = Input::get('grade');
-		$date = Input::get('date');
-		$group = Input::get('group');
-
-		//echo $id,$username, $name, $branch, $grade, $date, $group;
-		$user = Db::getInstance()->query("UPDATE users SET `username` = '$username', `name` = '$name', `branch` = '$branch', `grade` = '$grade', `date` = '$date', `group` = '$group' WHERE `users`.`id` = '$id';");
-		Redirect::to('admin_control.php');
-		//foreach ($user->results() as $user) {}
-	}
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,10 +38,17 @@
 		<div class="container">
 			<a class="navbar-brand" href="index.php">Rent a Student</a>
 			<ul class="nav nav-pills pull-right" style="margin-top: 5px;">
+				<?php if(isset($_SESSION['visitor'])) { ?>
+				<li><a href="student_page.php">Find a student</a></li>
+				<li><a href="visitor_profile.php">My Profile</a></li>
+				<?php } else if($user->isLoggedIn()) { ?>
 				<li><a href="student_page.php">Students</a></li>
 				<li><a href="student_profile.php">My Profile</a></li>
+				<?php } ?>
+				<?php if($user->hasPermission('admin')) { ?>
 				<li><a href="admin_panel.php">Admin</a></li>
-				<li><a class="btn btn-danger" href="admin_control.php">Back</a></li>
+				<?php } ?>
+				<li><a class="btn btn-danger" href="admin_panel.php">Back</a></li>
 			</ul>   	
 		</div>
 	</nav>
@@ -65,7 +57,7 @@
         <div class="container" style="margin-top: 50px; max-width: 960px;">                
             <div class="panel panel-info" >
                 <div class="panel-heading"><div class="panel-title">Admin control</div></div>    
-                <form action="" method="post" style="padding-top:30px" class="panel-body" >
+                <div action="" method="post" style="padding-top:30px" class="panel-body" >
  					<table class="table table-condensed" style="text-align: left;">
 				    	<thead style="font-weight: bold;">
 				    		<colgroup>
@@ -88,28 +80,27 @@
 					        </tr>
 				   		</thead>
 				    	<tbody>
-				    	<?php
-						if (isset($_GET['user_id'])) {
-							$id = $_GET['user_id'];
-							$user = Db::getInstance()->get('users', array('id', '=', $id));
-							foreach ($user->results() as $user) {
-							}
-							
-						}
-						?>
+	                	<?php $user = Db::getInstance()->query("SELECT * FROM `users`"); ?>
+	                	<?php foreach ($user->results() as $user) { ?>
 	                	<tr>                	
-							<td style="font-weight: bold;"><?php echo $user->id; ?></td>
-							<td><input name="username" value="<?php echo $user->username; ?>"></td>
-							<td><input name="name" value="<?php echo $user->name; ?>"></td>
-							<td><input name="branch" value="<?php echo $user->branch; ?>"></td>
-							<td><input name="grade" value="<?php echo $user->grade; ?>"></td>
-							<td><input name="date" value="<?php echo $user->date; ?>"></td>
-							<td><input name="group" value="<?php echo $user->group; ?>"></td>
+							<td>
+								<form action="admin_update.php" method="get">
+									<button type="submit" class='btn-success' name="user_id" value="<?php echo $user->id; ?>"/>
+										<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+									</button>
+								</form>
+							</td>
+							<td><input value="<?php echo $user->username; ?>" disabled></td>
+							<td><input value="<?php echo $user->name; ?>" disabled></td>
+							<td><input value="<?php echo $user->branch; ?>" disabled></td>
+							<td><input value="<?php echo $user->grade; ?>" disabled></td>
+							<td><input value="<?php echo $user->date; ?>" disabled></td>
+							<td><input value="<?php echo $user->group; ?>" disabled></td>
+						<?php } ?>
 						</tr>
 						</tbody>
 				    </table>
-                    <input type="submit" id="btn-signup" class="btn btn-success" value="Update"/>
-                </form>                     
+                </div>                     
             </div>  
         </div>
     </div>
