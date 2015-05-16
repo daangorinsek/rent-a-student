@@ -5,47 +5,16 @@
 	if(!isset($_SESSION['visitor'])) {
 		Redirect::to('index.php');
 	}
-
-
-	if (Input::exists()) {
-		$visitorID = $_SESSION['visitor'];
-		$visitor = Db::getInstance()->query("SELECT * FROM visitors WHERE fb_id = '$visitorID'");
-		foreach ($visitor->results() as $visitor) {
-			//
-		}
-
-
-	    $user = new User();
-	    $userID = $_POST['user_id'];
-		$user = Db::getInstance()->query("SELECT * FROM users WHERE id = '$userID'");
-		foreach ($user->results() as $user) {
-					//
-		}
-		if(empty($visitor->mail)) {
-		    // Do nothing
-		} else {
-			try {
-		    	$booking = new Booking();
-		    	$booking = Db::getInstance()->query("SELECT * FROM bookings WHERE visitor_name = '$visitor->name'");
-		    	if (!$booking->count()) {
-		    		$booking = new Booking();
-		    		$booking->create(array(
-		            'student_name' => $user->name,
-		            'student_mail' =>$user->username,
-		            'visitor_name' => $visitor->name,
-		            'visitor_mail' => $visitor->mail,
-		            'date' => $user->date,
-		        ));
-		    	} else {
-		    		$userAlreadyBooked = "U heeft al reeds een booking gemaakt.";
-		    		return $userAlreadyBooked;
-		    	}
-		    } catch(Exception $e) {
-		        $err = $e->getMessage();
-		    }
-		}
-	} else {
-		Redirect::to('student_page.php');
+	$visitorID = $_SESSION['visitor'];
+	$visitor = Db::getInstance()->query("SELECT * FROM visitors WHERE fb_id = '$visitorID'");
+	foreach ($visitor->results() as $visitor) {
+		//
+	}
+	$user = new User();
+	$userID = $_POST['user_id'];
+	$user = Db::getInstance()->query("SELECT * FROM users WHERE id = '$userID'");
+	foreach ($user->results() as $user) {
+		//
 	}
 ?><!DOCTYPE html>
 <html lang="en">
@@ -74,7 +43,7 @@
 			<ul class="nav nav-pills pull-right" style="margin-top: 5px;">
 				<li><a href="student_page.php">Students</a></li>
 				<li><a href="visitor_profile.php">My Profile</a></li>
-				<li><a class="btn btn-danger" href="student_page.php">Back</a></li>
+				<li><a class="btn btn-danger" href="admin_panel.php">Back</a></li>
 			</ul>   	
 		</div>
 	</nav>
@@ -82,7 +51,7 @@
 	<div class="container">    
         <div id="box" style="margin-top:70px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
             <div class="panel panel-info" >
-                <div class="panel-heading"><div class="panel-title">Booking</div></div>     
+                <div class="panel-heading"><div class="panel-title">Booking Confirmation</div></div>     
                 <div style="padding-top:30px" class="panel-body" >
                 	<?php if(empty($visitor->mail)) { ?>
                 	<?php echo '<p>Registreer eerst uw email <a href="visitor_profile.php">hier</a> aub.</p>'; ?>
