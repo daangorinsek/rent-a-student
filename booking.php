@@ -36,7 +36,7 @@
 		            'visitor_mail' => $visitor->mail,
 		            'date' => $user->date,
 		        ));
-<<<<<<< HEAD
+
 		     
 
 	        $to = $user->username; 
@@ -51,12 +51,11 @@
 
 
 
-=======
+
 		    	} else {
 		    		$userAlreadyBooked = "U heeft al reeds een booking gemaakt.";
 		    		return $userAlreadyBooked;
 		    	}
->>>>>>> 103464e1335510bdc9ef5eb1373830e33a7c66a7
 		    } catch(Exception $e) {
 		        $err = $e->getMessage();
 		    }

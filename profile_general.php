@@ -2,7 +2,7 @@
 
 require_once 'core/init.php';
 
-<<<<<<< HEAD
+
 if (isset($_GET['profile_id'])) {
 	$id = $_GET['profile_id'];
 	$user = Db::getInstance()->get('users', array('id', '=', $id));
@@ -10,8 +10,7 @@ if (isset($_GET['profile_id'])) {
 	}
 }
 
-=======
->>>>>>> 103464e1335510bdc9ef5eb1373830e33a7c66a7
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,14 +92,7 @@ if (isset($_GET['profile_id'])) {
 			
 
 					
-				<?php $feedback = new Feedback();
-				$feedback = Db::getInstance()->query("SELECT * FROM feedbacks");
-
-				foreach ($feedback->results() as $feedback) { ?>
-
-			
-				<li><?php echo $feedback->message; ?></li>
-				<?php } ?>
+				<
 
 
 			<?php if(isset($_SESSION['visitor'])) { ?>
