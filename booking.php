@@ -8,62 +8,38 @@
 
 
 	if (Input::exists()) {
-
-	$visitorID = $_SESSION['visitor'];
-	$visitor = Db::getInstance()->query("SELECT * FROM visitors WHERE fb_id = '$visitorID'");
-	foreach ($visitor->results() as $visitor) {
+		$visitorID = $_SESSION['visitor'];
+		$visitor = Db::getInstance()->query("SELECT * FROM visitors WHERE fb_id = '$visitorID'");
+		foreach ($visitor->results() as $visitor) {
 			//
-	}
-
-
-    $user = new User();
-    $userID = $_POST['user_id'];
-	$user = Db::getInstance()->query("SELECT * FROM users WHERE id = '$userID'");
-		foreach ($user->results() as $user) {
-				//
 		}
 
-	    try {
-	    	$booking = new Booking();
-	        $booking->create(array(
-	            'student_name' => $user->name,
-	            'visitor_name' => $visitor->name,
-	            'date' => $user->date,
-	        ));
 
-
-	        $bezoeker= $visitor->name;
-	       	$datum = $user->date;
-
-	        $to = $user->username; 
-			$email_subject = "Nieuwe boeking rent-a-student";
-			$email_body = "Hey, je bent net geboekt voor een rondleiding.\n\n"."$bezoeker heeft je net geboekt voor een rondleiding op $datum\n\n";
-			$headers = "From: noreply@rent-a-student.be\n"; 
-			
-			$mail = mail($to,$email_subject,$email_body,$headers);
-			
-
-
-
-
-
-	    } catch(Exception $e) {
-	        $err = $e->getMessage();
-	    }
+	    $user = new User();
+	    $userID = $_POST['user_id'];
+		$user = Db::getInstance()->query("SELECT * FROM users WHERE id = '$userID'");
+		foreach ($user->results() as $user) {
+					//
+		}
+		if(empty($visitor->mail)) {
+		    // Do nothing
+		} else {
+			try {
+		    	$booking = new Booking();
+		        $booking->create(array(
+		            'student_name' => $user->name,
+		            'student_mail' =>$user->username,
+		            'visitor_name' => $visitor->name,
+		            'visitor_mail' => $visitor->mail,
+		            'date' => $user->date,
+		        ));
+		    } catch(Exception $e) {
+		        $err = $e->getMessage();
+		    }
+		}
 	} else {
 		Redirect::to('student_page.php');
 	}
-
-
-
-
-
-
-
-
-
-
-
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,10 +77,13 @@
             <div class="panel panel-info" >
                 <div class="panel-heading"><div class="panel-title">Booking Confirmation</div></div>     
                 <div style="padding-top:30px" class="panel-body" >
+                	<?php if(empty($visitor->mail)) { ?>
+                	<?php echo '<p>Registreer eerst uw email <a href="visitor_profile.php">hier</a> aub.</p>'; ?>
+                	<?php } else { ?>
        				<span class="label label-success">Success</span>
        				<p>Alvast bedankt voor jou interesse, <?php echo $visitor->name; ?>!</p>
-       				<p>Jou rondleiding zal plaatsvinden op <?php echo $user->date; ?> met <?php echo $user->name; ?> als begeleider</p>
-       				
+       				<p>Jou rondleiding zal plaatsvinden op <?php echo $user->date; ?> met <?php echo $user->name; ?> als begeleider.</p>
+       				<?php } ?>
                 </div>                     
             </div>  
         </div>

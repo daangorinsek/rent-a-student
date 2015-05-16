@@ -59,7 +59,7 @@
 
 	<div class="container" style="margin-top: 50px; max-width: 960px;">
 
-		<form action="" method="post" role="form" >
+		<form action="set_email.php" method="post" role="form" >
 
 			<img id="profile-pic" class="" src="<?php echo $visitor->photo_url; ?>"/>
 
@@ -69,8 +69,13 @@
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-heart"></i></span>
-				<input type="text" class="form-control" name="email" value="<?php echo $visitor->gender; ?>" disabled>                                    
+				<input type="text" class="form-control" name="gender" value="<?php echo $visitor->gender; ?>" disabled>                                    
 			</div>
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+				<input type="text" class="form-control" name="mail" value="<?php echo $visitor->mail; ?>" disabled>                                        
+			</div>
+			<input type="submit" id="btn-signup" class="btn btn-success" value="Set email"/>
 		</form>
 
 	</div>

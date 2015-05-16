@@ -63,6 +63,7 @@
                     'name' => $name,
                     'photo_url' => $profile_pic,
                     'gender' => $gender,
+                    'mail' => '',
                     'fb_id' => $uid,
                     'group' => 1
                 ));
@@ -82,6 +83,7 @@
                 $err = $e->getMessage();
             }
         }
+        Redirect::to('visitor_profile.php');
 
     } 
         
