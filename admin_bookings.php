@@ -51,7 +51,7 @@
 	</nav>
 
 	<div class="container">    
-        <div id="box" style="margin-top:70px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+        <div class="container" style="margin-top: 50px; max-width: 960px;">                  
             <div class="panel panel-info" >
                 <div class="panel-heading"><div class="panel-title">Bookings</div></div>     
                 <div style="padding-top:30px" class="panel-body" >
@@ -60,7 +60,9 @@
 					        <tr>
 					          <th>#</th>
 					          <th>Student Name</th>
+					          <th>Student Email</th>
 					          <th>Visitor Name</th>
+					          <th>Visitor Email</th>
 					          <th>Date</th>
 					        </tr>
 				   		</thead>
@@ -70,7 +72,9 @@
 	                	<tr>	                	
 							<td style="font-weight: bold;"><?php echo $booking->id; ?></td>
 							<td><?php echo $booking->student_name; ?></td>
+							<td><?php echo $booking->student_mail; ?></td>
 							<td><?php echo $booking->visitor_name; ?></td>
+							<td><?php echo $booking->visitor_mail; ?></td>
 							<td><?php echo $booking->date; ?></td>
 						<?php } ?>
 						</tr>
