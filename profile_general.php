@@ -2,6 +2,60 @@
 
 require_once 'core/init.php';
 
+
+$visitor = new Visitor();
+	if(!isset($_SESSION['visitor'])) {
+		Redirect::to('index.php');
+	}
+
+$visitorID = $_SESSION['visitor'];
+	$visitor = Db::getInstance()->query("SELECT * FROM visitors WHERE fb_id = '$visitorID'");
+	foreach ($visitor->results() as $visitor) {
+		//
+	}
+
+$user = new User();
+$userID = $_GET['profile_id'];
+		$user = Db::getInstance()->query("SELECT * FROM users WHERE id = '$userID'");
+	foreach ($user->results() as $user) {
+		//
+	}
+
+	if (isset($_POST['add_feedback'])&&(!empty($_POST['feedback']))) {
+		try {
+		    	
+		    	$comment = Db::getInstance()->query("SELECT * FROM comments");
+		    	
+		    		$comment = new Comment();
+		    		$comment->create(array(
+		            'student_name' => $user->name,
+		           	'student_email' => $user->username,
+		          	'visitor_name' => $visitor->name,
+		           	'visitor_email' => $visitor->mail,
+		          	'date' => date('Y-m-d H:i:s'),
+		            'message' => Input::get('feedback'),
+		        ));
+		    	$comment = new Comment();
+		    	$comment = Db::getInstance()->query("SELECT * FROM comments");
+		    	foreach ($comment->results() as $comment) {
+		    	}
+		    		
+		    	$to = $user->username;
+				$subject = "U hebt een niewe bericht op uw profiel";
+				$msg = "". $comment->visitor_name . " heeft net een berichtje op jouw prikbord gezet.\n\n Bericht : ". $comment->message ."\n\n Emailadres v. afzender: ". $comment->visitor_email . "";
+				mail($to,$subject,$msg);
+		    } catch(Exception $e) {
+		        $err = $e->getMessage();
+		    }
+  		
+    
+} else{
+	//
+}
+
+
+
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +99,7 @@ require_once 'core/init.php';
 	</nav>
 
 	<div class="container" style="margin-top: 50px; max-width: 960px;">
-
+	<div class="col-md-8">
 		<form action="" method="post" role="form" >
 
 			<?php
@@ -80,9 +134,39 @@ require_once 'core/init.php';
 				<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
 				<input class="form-control" name="date" type="text"  value="<?php echo $user->date; ?>" disabled>
 			</div>
+		</form>
+		</div>
+		
+		<div class="col-md-4">
+		<form action="" method="post" role="form" >
+
+		<?php if(isset($_SESSION['visitor'])) { ?>
+			<div class="text-center">
+			<h2>Prikbord</h2>
+			<br />
+			<p>Laat een berichtje achter.</p>
+
+		<ul id="listupdates">
+		<?php 
+		$comment = new Comment();
+		$comment = Db::getInstance()->query("SELECT * FROM comments WHERE student_name = '$user->name'");
+		foreach ($comment->results() as $comment) { 
+		echo '<li><div class="alert alert-info">' . $comment->message . '</div></li><hr>';
+
+		
+		 
+		 } ?>
+		 </ul>
+			<textarea id="feedback" class="form-control" name="feedback" rows="5"></textarea>
+			<br />
+			<button type="submit" class='btn btn-success' id="add_feedback" name="add_feedback" value="<?php echo $user->id; ?>"/>Sturen</button>
 			
+			<?php } ?>
+			</div>
 
 		</form>
+		</div>
+		
 	</div>
 
 	<!-- SCRIPTS -->
