@@ -22,7 +22,7 @@
 					//
 		}
 		if(empty($visitor->mail)) {
-		    // Do nothing
+		    //
 		} else {
 			try {
 		    	$booking = new Booking();
@@ -38,7 +38,7 @@
 		        ));
 		    	} else {
 		    		$userAlreadyBooked = "U heeft al reeds een booking gemaakt.";
-		    		Redirect::to('student_page.php');
+		    		Redirect::to('already_Booked.php');
 		    	}
 		    } catch(Exception $e) {
 		        $err = $e->getMessage();
