@@ -2,15 +2,6 @@
 
 require_once 'core/init.php';
 
-
-if (isset($_GET['profile_id'])) {
-	$id = $_GET['profile_id'];
-	$user = Db::getInstance()->get('users', array('id', '=', $id));
-	foreach ($user->results() as $user) {
-	}
-}
-
-
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,18 +81,6 @@ if (isset($_GET['profile_id'])) {
 				<input class="form-control" name="date" type="text"  value="<?php echo $user->date; ?>" disabled>
 			</div>
 			
-
-					
-				<
-
-
-			<?php if(isset($_SESSION['visitor'])) { ?>
-				<form action="" method="post">
-
-					<textarea id="message" class="form-control" name="message" rows="5"></textarea>
-					<button type="submit" class='btn btn-success' name="user_id" value="<?php echo $user->id; ?>"/>Post</button>
-				</form>
-			<?php } ?>
 
 		</form>
 	</div>
