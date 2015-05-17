@@ -4,7 +4,7 @@ class Validate {
   private $_passed = FALSE, $_errors = array(), $_db = null;
 
   public function __construct() {
-    $this -> _db = DB::getInstance();
+    $this -> _db = Db::getInstance();
   }
 
   public function check($source, $items = array()) {

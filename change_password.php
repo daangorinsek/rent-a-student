@@ -39,10 +39,10 @@ if (Input::exists()) {
 
             	Redirect::to('profile.php');
             }
-        } else {
+        } else {/*
             foreach ($validation->errors() as $error) {
-                echo $error . '<br />';
-            }
+               echo $error . '<br />';
+            }*/
         }
     }
 }
@@ -111,7 +111,15 @@ if (Input::exists()) {
                         <input type="submit" id="btn-signup" class="btn btn-success" value="Change"/>
 
                     </form>     
-
+                    <p>
+                        <?php 
+                        if (Input::exists()) {
+                            foreach ($validation->errors() as $error) {
+                                echo $error . '<br />';
+                            }
+                        }
+                        ?>
+                    </p>
                 </div>                     
             </div>  
         </div>
