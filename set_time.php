@@ -21,16 +21,14 @@
 			//
 		}
 
+		
+
 		try {
 	    	$booking = new Booking();
 	    	$time = $_POST['time'];
 	    	$visitorName =$visitor->name;
 	    	$booking = Db::getInstance()->query("UPDATE bookings SET `time` = '$time' WHERE `bookings`.`visitor_name` = '$visitorName'");
-	    	
-	    	$to = $user->username;
-	    	$subject = "Booking";
-	    	$msg = 'Jou rondleiding zal plaatsvinden op ' . echo $user->date . ' om ' . echo $booking->time . ' met ' . echo $user->name . ' als jou begeleider.';
-	    	mail($to,$subject,$msg);
+	    
 	    	Redirect::to('booking_success.php');
 	    } catch(Exception $e) {
 	        $err = $e->getMessage();

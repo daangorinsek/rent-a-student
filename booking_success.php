@@ -21,6 +21,18 @@
 	foreach ($booking->results() as $booking) {
 		//
 	}
+
+	$to = $visitor->mail;
+	$subject = "Booking";
+	$msg = 'Jou rondleiding zal plaatsvinden op '. $user->date . ' om ' . $booking->time . ' met ' . $user->name . ' als jou begeleider.';
+	mail($to,$subject,$msg);
+
+	$tostudent = $user->username;
+	$subjectstudent = "Booking";
+	$msgstudent = 'Je heb een rondleiding op '. $user->date . ' om ' . $booking->time . ' met ' . $visitor->name . '.';
+	mail($tostudent,$subject,$msgstudent);
+
+	
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
