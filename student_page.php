@@ -3,15 +3,7 @@
 require_once 'core/init.php';
 
 $user = new User();
-/*
-if(!$user->isLoggedIn()) {
-	Redirect::to('login.php');
-}
-*/
-/*
-if(!isset($_SESSION['visitor'])) {
-	Redirect::to('index.php');
-}*/
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>

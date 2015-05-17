@@ -38,7 +38,7 @@
 		        ));
 		    	} else {
 		    		$userAlreadyBooked = "U heeft al reeds een booking gemaakt.";
-		    		return $userAlreadyBooked;
+		    		Redirect::to('student_page.php');
 		    	}
 		    } catch(Exception $e) {
 		        $err = $e->getMessage();
@@ -96,7 +96,7 @@
 					  <input type="submit"class="btn btn-primary">
 					</form>
        				<?php } ?>
-                </div>                     
+                </div>                    
             </div>  
         </div>
     </div>
