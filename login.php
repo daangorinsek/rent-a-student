@@ -20,10 +20,10 @@ if (Input::exists()) {
             } else {
                 echo 'Login failed';
             }
-        } else {
+        } else {/*
             foreach ($validation->errors() as $error) {
                 echo $error . '<br />';
-            }
+            }*/
         }
     }
 }
@@ -82,7 +82,15 @@ if (Input::exists()) {
                         <input type="hidden" name="token" value="<?php echo Token::generate(); ?>"/>
                         <input type="submit" id="btn-signin" class="btn btn-success pull-left loginform" value="Log In"/>
                     </form>     
-
+                     <p>
+                        <?php 
+                        if (Input::exists()) {
+                            foreach ($validation->errors() as $error) {
+                                echo $error . '<br />';
+                            }
+                        }
+                        ?>
+                    </p>
                 </div>                     
             </div>  
         </div>

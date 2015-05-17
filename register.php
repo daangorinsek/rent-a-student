@@ -52,10 +52,10 @@ if (Input::exists()) {
             } catch(Exception $e) {
                 $err = $e->getMessage();
             }
-        } else {
+        } else {/*
             foreach ($validation->errors() as $error) {
                 echo $error . '<br />';
-            }
+            }*/
         }
     }
 }
@@ -137,7 +137,13 @@ if (Input::exists()) {
                         <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" />
                         <input type="submit" id="btn-signup" class="btn btn-success" value="Sign Up"/>
                     </form>     
-
+                    <?php 
+                        if (Input::exists()) {
+                            foreach ($validation->errors() as $error) {
+                                echo $error . '<br />';
+                            }
+                        }
+                        ?>
                 </div>                     
             </div>  
         </div>
