@@ -41,7 +41,7 @@ if (Input::exists()) {
                     'grade' => Input::get('grade'),
                     'date' => Input::get('date')
                 ));
-                Redirect::to('profile.php');
+                Redirect::to('student_profile.php');
             } catch(Exception $e) {
                 die($e->getMessage());
             }
